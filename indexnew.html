@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Диана Сакания, визажист</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* One ground, one ink, one gold accent. Everything else is space and type. */
+:root {
+  --bg: #FBF5EE;
+  --card: #FFFFFF;
+  --ink: #2B1A26;
+  --plum: #4A2540;
+  --muted: #7A6670;
+  --line: rgba(74, 37, 64, 0.14);
+  --gold: #C9A46A;
+  --cta-bg: var(--plum);
+  --cta-fg: #FBF5EE;
+  --cta-arrow-bg: var(--gold);
+  --cta-arrow-fg: var(--plum);
+  --wa: #25D366;
+  --wa-ink: #0E3B20;
+  --fg: var(--ink);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1C121A;
+    --card: #271B25;
+    --ink: #F6EBE3;
+    --plum: #F1DCD5;
+    --muted: #BFA9B4;
+    --line: rgba(241, 220, 213, 0.16);
+    --gold: #D9B98A;
+    --cta-bg: var(--gold);
+    --cta-fg: #1C121A;
+    --cta-arrow-bg: #1C121A;
+    --cta-arrow-fg: var(--gold);
+    --fg: var(--ink);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1C121A;
+  --card: #271B25;
+  --ink: #F6EBE3;
+  --plum: #F1DCD5;
+  --muted: #BFA9B4;
+  --line: rgba(241, 220, 213, 0.16);
+  --gold: #D9B98A;
+  --cta-bg: var(--gold);
+  --cta-fg: #1C121A;
+  --cta-arrow-bg: #1C121A;
+  --cta-arrow-fg: var(--gold);
+  --fg: var(--ink);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Jost', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.55;
+  margin: 0;
+}
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-left: max(18px, env(safe-area-inset-left, 0px));
+  padding-right: max(18px, env(safe-area-inset-right, 0px));
+  padding-block: 18px 120px;
+}
+h1, h2, h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  line-height: 1.02;
+  text-wrap: balance;
+  margin: 0;
+}
+h1 { font-size: clamp(52px, 13vw, 96px); letter-spacing: -0.015em; }
+h2 { font-size: clamp(38px, 9vw, 56px); }
+h3 { font-size: 28px; }
+em { font-style: italic; color: var(--gold); }
+.eyebrow { font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 600; margin: 0; color: var(--gold); }
+a { color: inherit; }
+
+/* Main CTA: full width on phones */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  background: var(--cta-bg);
+  color: var(--cta-fg);
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 8px 8px 8px 28px;
+  font-size: 19px;
+  font-weight: 600;
+  min-height: 68px;
+  box-shadow: 0 12px 28px -14px rgba(43, 26, 38, 0.6);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.btn .arr {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--cta-arrow-bg);
+  color: var(--cta-arrow-fg);
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform .25s ease;
+}
+.btn:hover { transform: translateY(-2px); box-shadow: 0 18px 32px -14px rgba(43, 26, 38, 0.65); }
+.btn:hover .arr { transform: translateX(4px); }
+.btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+@media (min-width: 640px) { .btn { width: auto; min-width: 320px; } }
+
+.wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--wa);
+  color: var(--wa-ink);
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 14px 24px;
+  font-size: 17px;
+  font-weight: 600;
+  min-height: 56px;
+  transition: transform .2s ease;
+}
+.wa:hover { transform: translateY(-2px); }
+.wa:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+
+/* Floating WhatsApp */
+.wa-float {
+  position: fixed;
+  right: max(18px, env(safe-area-inset-right, 0px));
+  bottom: max(18px, env(safe-area-inset-bottom, 0px));
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: var(--wa);
+  color: var(--wa-ink);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 14px 30px -10px rgba(14, 59, 32, 0.6);
+  z-index: 50;
+  transition: transform .2s ease;
+}
+.wa-float:hover { transform: scale(1.06); }
+.wa-float:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+.wa-float::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--wa);
+  opacity: 0.5;
+  animation: ring 2.4s ease-out infinite;
+}
+@keyframes ring { from { transform: scale(0.9); opacity: 0.6; } to { transform: scale(1.35); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .wa-float::before { animation: none; display: none; }
+  .btn, .btn .arr, .wa, .wa-float { transition: none; }
+}
+
+/* Top */
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 6px 0 28px; border-bottom: 1px solid var(--line); }
+.brand { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26px; font-weight: 600; }
+.pill { font-size: 13px; letter-spacing: 0.08em; color: var(--muted); }
+
+/* Hero */
+.hero { padding: 48px 0 40px; display: grid; gap: 36px; }
+.hero .lead { font-size: 19px; color: var(--muted); margin: 0; max-width: 460px; }
+.hero .note { font-size: 15px; color: var(--muted); margin: 14px 0 0; }
+.rule {
+  margin-top: 16px;
+  border: 1.5px solid var(--gold);
+  border-radius: 18px;
+  padding: 14px 18px;
+  background: color-mix(in srgb, var(--gold) 10%, transparent);
+  display: grid;
+  gap: 4px;
+}
+.rule-title { font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: var(--plum); margin: 0; }
+.rule-text { font-size: 19px; margin: 0; color: var(--ink); }
+.rule-text strong { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 30px; font-weight: 600; color: var(--gold); vertical-align: -3px; margin-left: 2px; }
+
+/* Offer with countdown */
+.offer {
+  background: var(--plum);
+  color: var(--bg);
+  border-radius: 32px;
+  padding: clamp(28px, 6vw, 40px);
+  display: grid;
+  gap: 18px;
+}
+.offer .eyebrow { color: var(--gold); }
+.offer .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.offer .big { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(88px, 22vw, 128px); line-height: 0.85; font-weight: 600; color: var(--gold); }
+.offer .small { font-size: 20px; line-height: 1.3; padding-bottom: 8px; }
+.offer .timer {
+  border-top: 1px solid rgba(251, 245, 238, 0.22);
+  padding-top: 16px;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  opacity: 0.92;
+}
+.offer .timer strong { font-variant-numeric: tabular-nums; color: var(--gold); font-weight: 600; }
+.units { display: flex; gap: 10px; flex-wrap: wrap; width: 100%; }
+.units > div { background: rgba(251, 245, 238, 0.1); border-radius: 16px; padding: 10px 14px; min-width: 84px; flex: 1 1 84px; text-align: center; }
+.units strong { display: block; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 40px; line-height: 1; font-weight: 600; font-variant-numeric: tabular-nums; }
+.units small { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; }
+
+/* Sections, separated by hairlines */
+section { padding: 48px 0 0; margin-top: 48px; border-top: 1px solid var(--line); }
+.sec-head { display: grid; gap: 10px; margin-bottom: 26px; }
+
+/* Services: plain list with hairlines, no colour blocks */
+.services { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.services li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 19px;
+}
+.services li:first-child { border-top: 1px solid var(--line); }
+.services li a { flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: inherit; text-decoration: none; min-width: 0; }
+.services li a::after { content: "→"; color: var(--gold); font-size: 20px; transition: transform .25s ease; flex-shrink: 0; }
+.services li a:hover { color: var(--gold); }
+.services li a:hover::after { transform: translateX(4px); }
+.services li a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 6px; }
+/* Tap/hover highlight: a soft gold band behind the whole row */
+.services li {
+  margin: 0 -14px;
+  padding: 18px 14px;
+  border-radius: 16px;
+  border-bottom-color: transparent;
+  transition: background-color .2s ease, transform .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.services li:hover { background-color: color-mix(in srgb, var(--gold) 14%, transparent); }
+.services li:active { background-color: color-mix(in srgb, var(--gold) 28%, transparent); transform: scale(0.99); }
+.services li a:hover { color: var(--plum); }
+@media (prefers-reduced-motion: reduce) { .services li { transition: none; } }
+.services .nm { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.services .nm small { font-size: 14px; color: var(--muted); }
+.services .pr { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px; font-weight: 600; color: var(--plum); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.services .cat { font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+.group-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 30px; font-weight: 600; margin: 28px 0 4px; }
+.group-title:first-of-type { margin-top: 0; }
+.group-title { display: flex; align-items: center; gap: 12px; }
+.group-title svg { width: 28px; height: 28px; color: var(--gold); flex-shrink: 0; }
+
+/* Steps: vertical timeline */
+.timeline { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: 28px; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 21px;
+  top: 22px;
+  bottom: 22px;
+  width: 1px;
+  background: var(--gold);
+}
+.timeline li { display: grid; grid-template-columns: 44px 1fr; gap: 20px; position: relative; }
+.timeline .dot {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: var(--bg);
+  color: var(--plum);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+  position: relative;
+  z-index: 1;
+}
+.timeline b { display: block; font-size: 20px; font-weight: 600; margin-bottom: 2px; }
+.timeline span.t { color: var(--muted); }
+
+/* Visit / contacts */
+.contact { display: grid; gap: 22px; }
+.contact .addr { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(34px, 8vw, 44px); line-height: 1.05; font-weight: 600; }
+.phone-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 18px; }
+.phone-row strong { font-weight: 600; }
+.copy {
+  font: inherit;
+  font-size: 14px;
+  background: transparent;
+  color: var(--plum);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  min-height: 36px;
+}
+.copy:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.contact .muted { color: var(--muted); font-size: 16px; margin: 0; }
+.contact .muted a { color: var(--plum); }
+.contact-actions { display: grid; gap: 12px; }
+
+footer { margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">Диана Сакания</div>
+    <span class="pill">Визажист · Сухум</span>
+  </header>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Natural beauty</p>
+      <h1 style="margin-top:16px">Запишитесь <em>на удобное</em> время</h1>
+      <p class="lead" style="margin-top:20px">Макияж, брови, губы и перманентный макияж. Подберём образ, который выглядит естественно и держится.</p>
+    </div>
+
+    <div>
+      <a class="btn" href="https://n1474067.alteg.io" target="_blank" rel="noopener">Записаться онлайн <span class="arr">→</span></a>
+      <div class="rule">
+        <p class="rule-title">Скидка только для новых клиентов</p>
+        <p class="rule-text">В комментарии к записи напишите цифру <strong>30</strong></p>
+      </div>
+    </div>
+
+    <aside class="offer" aria-label="Акция">
+      <p class="eyebrow">Новым клиентам</p>
+      <div class="row">
+        <div class="big">−30%</div>
+        <div class="small">на первый визит<br><span style="font-size:15px;opacity:.85">только для новых клиентов</span></div>
+      </div>
+      <div class="timer">
+        <span>Акция до 30 ноября. Осталось:</span>
+        <div class="units">
+          <div><strong id="d">—</strong><small>дней</small></div>
+          <div><strong id="h">—</strong><small>часов</small></div>
+          <div><strong id="m">—</strong><small>минут</small></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Услуги</p>
+      <h2>Выберите <em>процедуру</em></h2>
+    </div>
+
+    <h3 class="group-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Макияж</h3>
+    <ul class="services">
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Дневной макияж<small>45 мин</small></span><span class="pr">2 500 ₽</span></a></li>
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Вечерний макияж<small>45 мин</small></span><span class="pr">3 000 ₽</span></a></li>
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Свадебный макияж<small>1 ч</small></span><span class="pr">5 000 ₽</span></a></li>
+    </ul>
+
+    <h3 class="group-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l4-1L19 7l-3-3L4 17l-1 4z"/><path d="M14 6l4 4"/></svg>Перманентный макияж</h3>
+    <ul class="services">
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Брови<small>1 ч 30 мин</small></span><span class="pr">7 000 ₽</span></a></li>
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Губы<small>1 ч 30 мин</small></span><span class="pr">7 000 ₽</span></a></li>
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Стрелки<small>1 ч 30 мин</small></span><span class="pr">7 000 ₽</span></a></li>
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Межреснички<small>1 ч 30 мин</small></span><span class="pr">5 000 ₽</span></a></li>
+    </ul>
+
+    <h3 class="group-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>Коррекция</h3>
+    <ul class="services">
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Коррекция бровей<small>1 ч</small></span><span class="pr">4 000 ₽</span></a></li>
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Коррекция губ<small>1 ч</small></span><span class="pr">4 000 ₽</span></a></li>
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Коррекция стрелок<small>1 ч</small></span><span class="pr">4 000 ₽</span></a></li>
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Коррекция межресничек<small>1 ч</small></span><span class="pr">3 000 ₽</span></a></li>
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Удаление перманентного макияжа<small>1 ч</small></span><span class="pr">4 000 ₽</span></a></li>
+    </ul>
+
+    <h3 class="group-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15c3-6 13-8 18 0"/></svg>Брови</h3>
+    <ul class="services">
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Окрашивание краской<small>30 мин</small></span><span class="pr">500 ₽</span></a></li>
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Окрашивание хной<small>45 мин</small></span><span class="pr">1 000 ₽</span></a></li>
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Коррекция и окрашивание<small>30 мин</small></span><span class="pr">1 000 ₽</span></a></li>
+      <li><a href="https://n1474067.alteg.io" target="_blank" rel="noopener"><span class="nm">Долговременная укладка с окрашиванием<small>45 мин</small></span><span class="pr">2 500 ₽</span></a></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Как записаться</p>
+      <h2>Три <em>шага</em></h2>
+    </div>
+    <ol class="timeline">
+      <li><span class="dot">1</span><div><b>Выберите услугу</b><span class="t">Нажмите «Записаться онлайн» и отметьте нужную процедуру.</span></div></li>
+      <li><span class="dot">2</span><div><b>Выберите время</b><span class="t">Свободные окна видны сразу, без звонков и переписки.</span></div></li>
+      <li><span class="dot">3</span><div><b>Получите скидку</b><span class="t">В комментарии к записи напишите цифру 30.</span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Адрес и контакты</p>
+      <h2>Сухум, <em>Ардзинба 50</em></h2>
+    </div>
+    <div class="contact">
+      <div class="phone-row">
+        <span>Телефон:</span>
+        <strong id="phone">+7 940 925-31-08</strong>
+        <button class="copy" type="button" id="copy-btn">Скопировать</button>
+      </div>
+      <div class="contact-actions">
+        <a class="btn" href="https://n1474067.alteg.io" target="_blank" rel="noopener">Записаться онлайн <span class="arr">→</span></a>
+        <a class="wa" href="https://wa.me/79409253108" target="_blank" rel="noopener" style="justify-content:center">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.5-4.5A9 9 0 1 1 8 19.5L3 21z"/><path d="M9 10c0 2.5 2.5 5 5 5l1-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2-1.5 1z"/></svg>
+          Написать в WhatsApp
+        </a>
+      </div>
+      <p class="muted">Работы смотрите в Instagram <a href="https://www.instagram.com/dianasakanya.make" target="_blank" rel="noopener">@dianasakanya.make</a>.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span>Диана Сакания · Визажист · Сухум</span>
+    <span>Скидка −30% до 30 ноября</span>
+  </footer>
+
+</div>
+
+<a class="wa-float" href="https://wa.me/79409253108" target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="Написать в WhatsApp">
+  <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.5-4.5A9 9 0 1 1 8 19.5L3 21z"/><path d="M9 10c0 2.5 2.5 5 5 5l1-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2-1.5 1z"/></svg>
+</a>
+
+<script>
+(function () {
+  // Countdown to the end of the promo (30 November, end of day, Moscow time).
+  var end = new Date('2026-11-30T23:59:59+03:00').getTime();
+  var elD = document.getElementById('d');
+  var elH = document.getElementById('h');
+  var elM = document.getElementById('m');
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function tick() {
+    if (!elD || !elH || !elM) return;
+    var ms = end - Date.now();
+    if (isNaN(ms) || ms <= 0) {
+      elD.textContent = '0'; elH.textContent = '00'; elM.textContent = '00';
+      return;
+    }
+    elD.textContent = Math.floor(ms / 86400000);
+    elH.textContent = pad(Math.floor((ms % 86400000) / 3600000));
+    elM.textContent = pad(Math.floor((ms % 3600000) / 60000));
+  }
+  tick();
+  setInterval(tick, 30000);
+
+  // Copy phone number, with a selection fallback.
+  var btn = document.getElementById('copy-btn');
+  var phone = document.getElementById('phone');
+  if (!btn || !phone) return;
+  btn.addEventListener('click', function () {
+    var text = phone.textContent.trim();
+    var done = function () { btn.textContent = 'Скопировано'; setTimeout(function () { btn.textContent = 'Скопировать'; }, 1600); };
+    var fallback = function () {
+      var r = document.createRange();
+      r.selectNodeContents(phone);
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      btn.textContent = 'Выделено, нажмите «Копировать»';
+    };
+    try {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } catch (e) {
+      fallback();
+    }
+  });
+})();
+</script>
+</body>
+</html>
