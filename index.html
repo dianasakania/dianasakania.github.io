@@ -645,6 +645,13 @@ footer {
   color: var(--gold);
   margin-top: 2px;
 }
+.booking-ext {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--gold);
+  text-decoration: none;
+  white-space: nowrap;
+}
 .booking-close {
   width: 38px;
   height: 38px;
@@ -1133,6 +1140,7 @@ footer {
         <strong id="booking-title">Онлайн-запись</strong>
         <span id="booking-sub">Диана Сакания · Сухум</span>
       </div>
+      <a class="booking-ext" id="booking-ext" href="#" target="_blank" rel="noopener">В браузере ↗</a>
       <button class="booking-close" id="booking-close" type="button" aria-label="Закрыть окно записи">✕</button>
     </div>
     <div class="booking-body">
@@ -1278,6 +1286,8 @@ footer {
     if (modalTitle) modalTitle.textContent = title || 'Онлайн-запись';
     if (loader) loader.classList.remove('hidden');
     if (frame) frame.src = url;
+    var ext = document.getElementById('booking-ext');
+    if (ext) ext.href = url;
     if (modal) modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -1301,16 +1311,9 @@ footer {
   document.querySelectorAll('a[data-url]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var url = a.getAttribute('data-url');
-      var m = /m3116558s(\d+)/.exec(url);
-      var sid = m ? Number(m[1]) : null;
-      var w = window.yWidget || (window.ms_booking && window.ms_booking.widget);
-      if (sid && w && typeof w.show === 'function') {
-        try { e.preventDefault(); w.show({ staff_id: 3116558, service_ids: [sid] }); return; } catch (err) {}
-      }
-      if (sid) {
-        e.preventDefault();
-        openBookingSheet(url, a.getAttribute('data-service-title') || 'Онлайн-запись');
-      }
+      if (!url) return;
+      e.preventDefault();
+      openBookingSheet(url, a.getAttribute('data-service-title') || 'Онлайн-запись');
     });
   });
 
