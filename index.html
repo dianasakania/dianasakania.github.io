@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0F090C" id="meta-theme-color">
+<meta name="theme-color" content="#F5F5F5" id="meta-theme-color">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta name="apple-mobile-web-app-title" content="Диана · Визажист">
+<link rel="apple-touch-icon" href="icon-512.png">
+<link rel="icon" type="image/png" href="icon-512.png">
+<meta name="apple-mobile-web-app-title" content="Diana · Запись">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Диана Сакания · визажист — онлайн-запись</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23120A0E'/%3E%3Ctext x='32' y='41' font-family='Georgia,serif' font-size='25' fill='%23DFC08A' text-anchor='middle'%3E%D0%94%D0%A1%3C/text%3E%3C/svg%3E">
 <meta name="description" content="Онлайн-запись к визажисту Диане Сакания в Сухуме. Выберите услугу и удобное время за минуту.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
@@ -27,7 +27,7 @@
 <meta name="twitter:image" content="https://dianasakania.github.io/preview.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>
 // Мгновенное восстановление выбранной темы до отрисовки страницы
 (function () {
@@ -40,7 +40,7 @@
   if (t === 'light' || t === 'dark') {
     document.documentElement.setAttribute('data-theme', t);
     var m = document.getElementById('meta-theme-color');
-    if (m) m.setAttribute('content', t === 'light' ? '#EEF2F6' : '#0F090C');
+    if (m) m.setAttribute('content', t === 'light' ? '#F5F5F5' : '#0F090C');
   }
 })();
 </script>
@@ -48,35 +48,35 @@
 /* Палитра: Тёмный бархат и шампань */
 :root {
   --bg: #0F090C;
-  --bg-elevated: #180F14;
-  --surface: rgba(255, 245, 238, 0.035);
-  --surface-hover: rgba(223, 192, 138, 0.07);
+  --bg-elevated: #1A1015;
+  --surface: rgba(255, 245, 238, 0.045);
+  --surface-hover: rgba(223, 192, 138, 0.09);
   --ink: #F5ECE4;
-  --muted: #9E8B92;
+  --muted: #B09DA4;
   --gold: #DFC08A;
-  --gold-dim: rgba(223, 192, 138, 0.28);
-  --line: rgba(245, 236, 228, 0.1);
+  --gold-dim: rgba(223, 192, 138, 0.32);
+  --line: rgba(245, 236, 228, 0.14);
   --btn-bg: #DFC08A;
   --btn-ink: #120A0E;
-  --modal-backdrop: rgba(10, 6, 8, 0.82);
+  --modal-backdrop: rgba(10, 6, 8, 0.84);
   --glow: radial-gradient(ellipse 70% 45% at 50% 0%, rgba(138, 62, 88, 0.28) 0%, rgba(15, 9, 12, 0) 75%);
   color-scheme: dark;
 }
 
-/* Палитра: Светлая дизайнерская бумага */
+/* Палитра: Светлый монохром */
 :root[data-theme="light"] {
   --bg: #F5F5F5;
   --bg-elevated: #FFFFFF;
-  --surface: rgba(0,0,0,0.02);
-  --surface-hover: rgba(0,0,0,0.05);
+  --surface: #FFFFFF;
+  --surface-hover: #FAFAFA;
   --ink: #000000;
-  --muted: #4D4D4D;
+  --muted: #525252;
   --gold: #000000;
-  --gold-dim: rgba(0,0,0,0.45);
-  --line: rgba(0,0,0,0.16);
+  --gold-dim: rgba(0, 0, 0, 0.25);
+  --line: rgba(0, 0, 0, 0.12);
   --btn-bg: #000000;
   --btn-ink: #FFFFFF;
-  --modal-backdrop: rgba(0,0,0,0.5);
+  --modal-backdrop: rgba(0, 0, 0, 0.52);
   --glow: none;
   color-scheme: light;
 }
@@ -90,48 +90,48 @@ body {
   background-repeat: no-repeat;
   color: var(--ink);
   font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  line-height: 1.55;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 .wrap {
-  max-width: 680px;
+  max-width: 640px;
   margin: 0 auto;
-  padding: 20px max(22px, env(safe-area-inset-left, 0px)) max(64px, env(safe-area-inset-bottom, 0px)) max(22px, env(safe-area-inset-right, 0px));
+  padding: 18px max(18px, env(safe-area-inset-left, 0px)) max(76px, env(safe-area-inset-bottom, 0px)) max(18px, env(safe-area-inset-right, 0px));
 }
 
 h1, h2, h3, .serif {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 400;
+  font-weight: 500;
   margin: 0;
 }
 em {
   font-style: italic;
   color: var(--gold);
-  font-weight: 400;
+  font-weight: 500;
 }
 
-/* Верхняя шапка */
+/* Верхняя шапка — крупнее для телефона */
 .topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding-bottom: 18px;
+  padding-bottom: 14px;
   border-bottom: 1px solid var(--line);
 }
 .brand-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
   text-decoration: none;
   color: inherit;
-  font-size: 11.5px;
-  letter-spacing: 0.16em;
+  font-size: 13px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 700;
   white-space: nowrap;
   min-width: 0;
 }
@@ -141,22 +141,6 @@ em {
   gap: 8px;
   flex-shrink: 0;
 }
-.icon-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  background: transparent;
-  color: var(--muted);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-.icon-btn:hover { color: var(--gold); border-color: var(--gold-dim); }
-.icon-btn svg { width: 14px; height: 14px; }
 
 /* Лёгкая текстура бархата / дизайнерской бумаги */
 body::after {
@@ -165,19 +149,14 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 90;
-  opacity: 0.032;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-:root[data-theme="light"] body::after { opacity: 0.04; }
-:root[data-theme="light"] .hero { box-shadow: 0 14px 36px rgba(70, 40, 52, 0.09); }
-:root[data-theme="light"] .contact-box { box-shadow: 0 10px 28px rgba(70, 40, 52, 0.07); }
-:root[data-theme="light"] .menu-price { color: #8A5F26; }
-:root[data-theme="light"] .hero-kicker, :root[data-theme="light"] .sec-label { color: #8A5F26; }
 
 .brand-dot {
   position: relative;
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--gold);
   box-shadow: 0 0 10px var(--gold);
@@ -192,92 +171,158 @@ body::after {
   opacity: 0;
   animation: pulseRing 3.2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
 }
+:root[data-theme="light"] .brand-dot {
+  box-shadow: none;
+}
+:root[data-theme="light"] .brand-dot::after {
+  display: none;
+}
 @keyframes pulseRing {
   0% { transform: scale(0.7); opacity: 0.65; }
   75%, 100% { transform: scale(2.1); opacity: 0; }
 }
+
 .theme-btn {
-  background: transparent;
-  color: var(--muted);
+  background: var(--surface);
+  color: var(--ink);
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 6px 12px;
+  padding: 7px 14px;
   font: inherit;
-  font-size: 11px;
-  letter-spacing: 0.11em;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
   white-space: nowrap;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  flex-shrink: 0;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 .theme-btn:hover { color: var(--gold); border-color: var(--gold-dim); }
 
-/* Визитная карточка первого экрана */
-.hero {
-  position: relative;
-  text-align: center;
-  padding: 26px 18px 22px;
-  margin-top: 18px;
-  border: 1px solid var(--gold-dim);
-  border-radius: 24px;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(223, 192, 138, 0.12) 0%, transparent 65%),
-    linear-gradient(180deg, var(--surface) 0%, transparent 100%);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
-}
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 6px;
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  pointer-events: none;
-}
-.hero::after {
-  content: "✦";
-  position: absolute;
-  top: -9px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--bg);
-  color: var(--gold);
-  padding: 0 10px;
-  font-size: 12px;
-  line-height: 1;
-}
-.hero-kicker {
-  font-size: 10px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin: 0 0 8px;
-}
-.hero h1 {
-  font-size: clamp(32px, 8.2vw, 54px);
-  line-height: 1.02;
-  letter-spacing: -0.015em;
-}
-.hero-meta {
+/* Статус, адрес и карточка ярлыка */
+.intro {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
-  margin-top: 12px;
+  gap: 5px;
+  margin-top: 20px;
+  text-align: center;
 }
-.hero-status {
-  font-size: 10.5px;
-  letter-spacing: 0.18em;
+.intro .hero-status {
+  font-size: 12px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold);
+  font-weight: 700;
 }
-.hero-address {
-  font-size: 12.5px;
-  letter-spacing: 0.05em;
+.intro .hero-address {
+  font-size: 16px;
+  font-weight: 500;
   color: var(--muted);
   white-space: nowrap;
 }
 
-/* Секции */
+/* Фирменная карточка-ярлык на главный экран */
+.shortcut-card {
+  margin-top: 14px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 15px;
+  border-radius: 20px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.045);
+  color: var(--ink);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.shortcut-card:hover {
+  border-color: var(--gold-dim);
+}
+.shortcut-card:active {
+  transform: scale(0.985);
+}
+.shortcut-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #000000;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.shortcut-icon-brand {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+.shortcut-icon-role {
+  font-size: 4.6px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-top: 2px;
+  opacity: 0.9;
+}
+.shortcut-icon-line {
+  width: 68%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.35);
+  margin: 2.5px 0 2px;
+}
+.shortcut-icon-sub {
+  font-size: 4.6px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.shortcut-copy {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.shortcut-title {
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.shortcut-sub {
+  font-size: 13.5px;
+  line-height: 1.3;
+  color: var(--muted);
+}
+.shortcut-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.shortcut-badge svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Секции и крупные выразительные заголовки */
 section {
   margin-top: 32px;
 }
@@ -285,11 +330,12 @@ section {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 11px;
-  letter-spacing: 0.26em;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .sec-label::after {
   content: "";
@@ -298,26 +344,31 @@ section {
   background: var(--line);
 }
 h2 {
-  font-size: clamp(32px, 7.5vw, 46px);
-  line-height: 1.02;
-  margin-bottom: 18px;
+  font-size: clamp(42px, 11.5vw, 56px);
+  line-height: 0.96;
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+h2 em {
+  display: block;
+  font-size: 1.04em;
 }
 
-/* Симметричная липкая сетка фильтров */
+/* Крупная удобная сетка фильтров под палец */
 .tabs-bar {
   position: sticky;
   top: 0;
   z-index: 30;
   background: var(--bg);
-  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  background: color-mix(in srgb, var(--bg) 95%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  margin: 0 -22px 26px;
-  padding: 12px 22px 14px;
+  margin: 0 -18px 26px;
+  padding: 12px 18px 14px;
   border-bottom: 1px solid var(--line);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+  gap: 9px;
 }
 @media (min-width: 580px) {
   .tabs-bar {
@@ -328,14 +379,19 @@ h2 {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 9px 12px;
+  padding: 12px 14px;
   font: inherit;
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 500;
   color: var(--muted);
   cursor: pointer;
   text-align: center;
   white-space: nowrap;
-  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+:root[data-theme="light"] .tab:not([aria-pressed="true"]) {
+  color: #111111;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 .tab[data-f="all"] {
   grid-column: 1 / -1;
@@ -345,74 +401,90 @@ h2 {
     grid-column: auto;
   }
 }
-.tab:hover { color: var(--ink); border-color: var(--gold-dim); }
-.tab[aria-pressed="true"] {
+.tab:not([aria-pressed="true"]):hover {
+  color: var(--ink);
+  border-color: var(--gold-dim);
+}
+.tab[aria-pressed="true"],
+:root[data-theme="light"] .tab[aria-pressed="true"] {
   background: var(--btn-bg);
   border-color: var(--btn-bg);
   color: var(--btn-ink);
   font-weight: 600;
 }
 
-/* Список услуг */
-.group-block { margin-bottom: 38px; }
+/* Крупные мобильные карточки процедур */
+.group-block { margin-bottom: 36px; }
 .group-block[hidden] { display: none; }
 .group-heading {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 30px;
+  font-size: 36px;
   font-style: italic;
+  font-weight: 500;
   color: var(--gold);
-  margin-bottom: 8px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
 }
 
 .menu-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 12px;
 }
 .menu-row {
-  border-bottom: 1px solid var(--line);
-  transition: background-color 0.2s ease;
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.035);
+  transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s ease, box-shadow 0.2s ease;
 }
 .menu-row:hover {
-  background: var(--surface-hover);
+  border-color: var(--gold-dim);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
 }
-.menu-btn { text-decoration: none; color: inherit; box-sizing: border-box; 
+.menu-row:active {
+  transform: scale(0.985);
+}
+.menu-btn {
+  text-decoration: none;
+  color: inherit;
+  box-sizing: border-box;
   width: 100%;
   background: transparent;
   border: none;
-  padding: 18px 6px;
+  padding: 20px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
   text-align: left;
-  color: inherit;
   font: inherit;
   cursor: pointer;
-  transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.menu-btn:active { transform: scale(0.988); }
 .pill-act:active, .tab:active { transform: scale(0.975); }
 
 .menu-title-wrap {
   display: grid;
-  gap: 4px;
+  gap: 6px;
   min-width: 0;
   flex: 1;
 }
 .menu-name {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.3;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.22;
   color: var(--ink);
   transition: color 0.2s ease;
 }
 .menu-btn:hover .menu-name { color: var(--gold); }
 .menu-sub {
-  font-size: 13px;
-  line-height: 1.45;
+  font-size: 14.5px;
+  line-height: 1.42;
   color: var(--muted);
+  font-weight: 500;
 }
 .menu-end {
   display: flex;
@@ -422,27 +494,36 @@ h2 {
 }
 .menu-price {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 25px;
-  font-weight: 500;
+  font-size: 29px;
+  font-weight: 600;
+  line-height: 1;
   color: var(--gold);
   white-space: nowrap;
 }
-.menu-arrow {
-  font-size: 15px;
-  color: var(--muted);
-  transition: transform 0.2s ease, color 0.2s ease;
+.menu-arrow-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
 }
-.menu-btn:hover .menu-arrow {
-  color: var(--gold);
-  transform: translateX(3px);
+.menu-btn:hover .menu-arrow-circle {
+  transform: translateX(2px);
 }
 
 /* Блок контактов и локации */
 .contact-box {
   border: 1px solid var(--gold-dim);
   border-radius: 24px;
-  padding: 20px;
+  padding: 18px;
   background: var(--bg-elevated);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
 }
 .contact-actions {
   display: grid;
@@ -453,18 +534,18 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   min-width: 0;
-  min-height: 46px;
-  padding: 11px 10px;
-  border-radius: 14px;
+  min-height: 52px;
+  padding: 13px 12px;
+  border-radius: 16px;
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--ink);
   text-decoration: none;
   font: inherit;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   text-align: center;
   white-space: nowrap;
   cursor: pointer;
@@ -480,15 +561,15 @@ h2 {
 }
 
 footer {
-  margin-top: 48px;
+  margin-top: 44px;
   padding-top: 20px;
   border-top: 1px solid var(--line);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 8px;
-  font-size: 12.5px;
-  letter-spacing: 0.04em;
+  font-size: 13.5px;
+  letter-spacing: 0.03em;
   color: var(--muted);
 }
 
@@ -501,9 +582,10 @@ footer {
   background: var(--bg-elevated);
   color: var(--gold);
   border: 1px solid var(--gold-dim);
-  padding: 9px 18px;
+  padding: 11px 20px;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 14.5px;
+  font-weight: 600;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease, transform 0.25s ease;
@@ -545,7 +627,7 @@ footer {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 14px 18px;
+  padding: 16px 18px;
   background: var(--bg-elevated);
   color: var(--ink);
   border-bottom: 1px solid var(--gold-dim);
@@ -553,24 +635,24 @@ footer {
 .booking-head-info strong {
   display: block;
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 23px;
+  font-weight: 600;
   line-height: 1.15;
 }
 .booking-head-info span {
   display: block;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--gold);
   margin-top: 2px;
 }
 .booking-close {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   border: 1px solid var(--gold-dim);
   background: var(--surface);
   color: var(--ink);
-  font-size: 16px;
+  font-size: 17px;
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -594,15 +676,15 @@ footer {
   gap: 10px;
   background: var(--bg-elevated);
   color: var(--muted);
-  font-size: 14px;
+  font-size: 15px;
   z-index: 1;
   pointer-events: none;
   transition: opacity 0.25s ease;
 }
 .booking-loader.hidden { opacity: 0; }
 .spinner {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border: 2px solid var(--gold-dim);
   border-top-color: var(--gold);
   border-radius: 50%;
@@ -618,27 +700,19 @@ footer {
   background: transparent;
 }
 
-:root[data-theme="light"] .menu-name { font-weight: 600; }
-:root[data-theme="light"] .menu-sub { font-size: 14px; font-weight: 500; }
-:root[data-theme="light"] .menu-row { border-bottom-color: var(--line); }
-:root[data-theme="light"] .menu-list { border-top-color: #000; }
-:root[data-theme="light"] .hero { background: #FFFFFF; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
-:root[data-theme="light"] .contact-box { background: var(--bg-elevated); }
-
-
-/* Плавающая кнопка WhatsApp в палитре сайта: справа внизу, кольцо расходится */
+/* Плавающая кнопка WhatsApp в палитре сайта: справа внизу */
 .wa-float {
   position: fixed;
   right: max(18px, env(safe-area-inset-right, 0px));
   bottom: max(18px, env(safe-area-inset-bottom, 0px));
-  width: 62px;
-  height: 62px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
   background: var(--btn-bg);
   color: var(--btn-ink);
   display: grid;
   place-items: center;
-  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 12px 26px -8px rgba(0, 0, 0, 0.35);
   z-index: 60;
   text-decoration: none;
   transition: transform .2s ease;
@@ -648,35 +722,82 @@ footer {
 .wa-float::before {
   content: "";
   position: absolute;
-  inset: -6px;
+  inset: -5px;
   border-radius: 50%;
-  border: 2px solid var(--btn-bg);
-  opacity: 0.5;
+  border: 1.5px solid var(--btn-bg);
+  opacity: 0.45;
   animation: waRing 2.4s ease-out infinite;
 }
-@keyframes waRing { from { transform: scale(0.9); opacity: 0.6; } to { transform: scale(1.35); opacity: 0; } }
-.wa-float svg { width: 28px; height: 28px; }
+@keyframes waRing { from { transform: scale(0.9); opacity: 0.55; } to { transform: scale(1.32); opacity: 0; } }
+.wa-float svg { width: 27px; height: 27px; }
 @media (prefers-reduced-motion: reduce) {
   .wa-float::before { animation: none; display: none; }
   .wa-float { transition: none; }
 }
 
-/* Компактная строка статуса вместо большого заголовка: список услуг сразу на экране */
-.intro { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 18px; text-align: center; }
-.intro .hero-status { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
-.intro .hero-address { font-size: 14px; color: var(--muted); white-space: nowrap; }
-
-/* Кнопка «Добавить на главный экран» и подсказка */
-.add-home { margin-top: 10px; background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 12px; font-weight: 500; cursor: pointer; }
-.a2hs { position: fixed; inset: 0; z-index: 130; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; padding: 20px; }
+/* Модальная подсказка «На экран Домой» */
+.a2hs {
+  position: fixed;
+  inset: 0;
+  z-index: 130;
+  background: rgba(0, 0, 0, 0.52);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
 .a2hs[hidden] { display: none; }
-.a2hs-card { background: #FFFFFF; color: #000; border-radius: 20px; padding: 22px 20px; max-width: 360px; width: 100%; box-sizing: border-box; }
-.a2hs-card strong { font-size: 18px; display: block; margin-bottom: 10px; }
-.a2hs-card p { font-size: 15px; line-height: 1.45; margin: 0 0 16px; color: #262626; }
-.a2hs-close { width: 100%; background: #000; color: #FFFFFF; border: none; border-radius: 12px; padding: 12px; font: inherit; font-weight: 600; font-size: 15px; cursor: pointer; }
-.add-hint { font-size: 12px; color: var(--muted); line-height: 1.4; max-width: 260px; text-align: center; }
-
-.booking-ext { font-size: 12px; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; text-decoration: none; white-space: nowrap; margin-right: 8px; }
+.a2hs-card {
+  background: #FFFFFF;
+  color: #000000;
+  border-radius: 22px;
+  padding: 24px 20px;
+  max-width: 360px;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+.a2hs-card strong {
+  font-size: 19px;
+  display: block;
+  margin-bottom: 10px;
+}
+.a2hs-card p {
+  font-size: 15.5px;
+  line-height: 1.45;
+  margin: 0 0 18px;
+  color: #262626;
+}
+.a2hs-actions {
+  display: grid;
+  gap: 8px;
+}
+.a2hs-btn-primary {
+  width: 100%;
+  background: #000000;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 14px;
+  padding: 13px;
+  font: inherit;
+  font-weight: 600;
+  font-size: 15.5px;
+  cursor: pointer;
+}
+.a2hs-btn-secondary {
+  width: 100%;
+  background: #F2F2F2;
+  color: #000000;
+  border: none;
+  border-radius: 14px;
+  padding: 12px;
+  font: inherit;
+  font-weight: 600;
+  font-size: 14.5px;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -688,22 +809,33 @@ footer {
       <span>Диана Сакания</span>
     </a>
     <div class="topbar-actions">
-      <button class="icon-btn" id="share-top" type="button" aria-label="Поделиться">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-          <polyline points="16 6 12 2 8 6"/>
-          <line x1="12" y1="2" x2="12" y2="15"/>
-        </svg>
-      </button>
-      <button class="theme-btn" id="theme-toggle" type="button">Светлая тема</button>
+      <button class="theme-btn" id="theme-toggle" type="button">Тёмная тема</button>
     </div>
   </header>
 
   <div class="intro">
     <span class="hero-status">Запись открыта</span>
     <span class="hero-address">Сухум, ул.&nbsp;Ардзинба,&nbsp;50</span>
-    <button class="add-home" id="add-home" type="button">+ Добавить на главный экран</button>
-    <span class="add-hint">Запись в один тап — значок на рабочем столе</span>
+
+    <button class="shortcut-card" id="add-home" type="button">
+      <span class="shortcut-icon" aria-hidden="true">
+        <span class="shortcut-icon-brand">Diana</span>
+        <span class="shortcut-icon-role">ВИЗАЖИСТ</span>
+        <span class="shortcut-icon-line"></span>
+        <span class="shortcut-icon-sub">ЗАПИСЬ</span>
+      </span>
+      <span class="shortcut-copy">
+        <span class="shortcut-title">На экран «Домой»</span>
+        <span class="shortcut-sub">Запись в 1 тап с экрана</span>
+      </span>
+      <span class="shortcut-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v12"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <path d="M5 20h14"/>
+        </svg>
+      </span>
+    </button>
   </div>
 
   <section id="services">
@@ -726,11 +858,11 @@ footer {
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908074" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908074" data-service-title="Дневной макияж · 2 500 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Дневной макияж</span>
-              <span class="menu-sub">45 мин · лёгкий естественный тон и свежесть</span>
+              <span class="menu-sub">45 мин · лёгкий естественный тон</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">2 500 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -739,11 +871,11 @@ footer {
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908080" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908080" data-service-title="Вечерний макияж · 3 000 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Вечерний макияж</span>
-              <span class="menu-sub">45 мин · выразительный образ на торжество</span>
+              <span class="menu-sub">45 мин · выразительный образ</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">3 000 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -752,11 +884,11 @@ footer {
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908073" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908073" data-service-title="Свадебный макияж · 5 000 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Свадебный макияж</span>
-              <span class="menu-sub">1 ч · максимальная стойкость до конца вечера</span>
+              <span class="menu-sub">1 ч · стойкость до конца вечера</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">5 000 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -771,11 +903,11 @@ footer {
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908190" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908190" data-service-title="Перманент бровей · 7 000 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Брови</span>
-              <span class="menu-sub">1 ч 30 мин · мягкое пудровое напыление</span>
+              <span class="menu-sub">1 ч 30 мин · пудровое напыление</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">7 000 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -784,11 +916,11 @@ footer {
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908193" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908193" data-service-title="Перманент губ · 7 000 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Губы</span>
-              <span class="menu-sub">1 ч 30 мин · акварельный эффект и ровный контур</span>
+              <span class="menu-sub">1 ч 30 мин · акварельный эффект</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">7 000 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -797,11 +929,11 @@ footer {
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908097" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908097" data-service-title="Перманент стрелок · 7 000 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Стрелки</span>
-              <span class="menu-sub">1 ч 30 мин · классика или мягкая растушёвка</span>
+              <span class="menu-sub">1 ч 30 мин · классика или растушёвка</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">7 000 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -810,11 +942,11 @@ footer {
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908088" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908088" data-service-title="Межреснички · 5 000 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Межреснички</span>
-              <span class="menu-sub">1 ч 30 мин · эффект густых ресниц без макияжа</span>
+              <span class="menu-sub">1 ч 30 мин · эффект густых ресниц</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">5 000 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -823,17 +955,17 @@ footer {
 
     <!-- Группа 2: Коррекция перманентного макияжа -->
     <div class="group-block" data-group="2">
-      <h3 class="group-heading">Коррекция перманентного макияжа</h3>
+      <h3 class="group-heading">Коррекция перманента</h3>
       <ul class="menu-list">
         <li class="menu-row">
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908199" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908199" data-service-title="Коррекция бровей · 4 000 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Коррекция бровей</span>
-              <span class="menu-sub">1 ч · закрепление оттенка через 1–2 месяца</span>
+              <span class="menu-sub">1 ч · закрепление через 1–2 мес.</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">4 000 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -842,11 +974,11 @@ footer {
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908203" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908203" data-service-title="Коррекция губ · 4 000 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Коррекция губ</span>
-              <span class="menu-sub">1 ч · доработка насыщенности и контура</span>
+              <span class="menu-sub">1 ч · доработка насыщенности</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">4 000 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -855,11 +987,11 @@ footer {
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908206" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908206" data-service-title="Коррекция стрелок · 4 000 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Коррекция стрелок</span>
-              <span class="menu-sub">1 ч · фиксация чёткости и глубины цвета</span>
+              <span class="menu-sub">1 ч · чёткость и глубина цвета</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">4 000 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -868,11 +1000,11 @@ footer {
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908198" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908198" data-service-title="Коррекция межресничек · 3 000 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Коррекция межресничек</span>
-              <span class="menu-sub">1 ч · обновление или закрепление пигмента</span>
+              <span class="menu-sub">1 ч · закрепление пигмента</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">3 000 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -881,11 +1013,11 @@ footer {
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908205" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908205" data-service-title="Удаление перманента · 4 000 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Удаление перманентного макияжа</span>
-              <span class="menu-sub">1 ч · бережное осветление старого пигмента</span>
+              <span class="menu-sub">1 ч · бережное осветление</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">4 000 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -900,11 +1032,11 @@ footer {
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908793" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908793" data-service-title="Окрашивание краской · 500 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Окрашивание краской</span>
-              <span class="menu-sub">30 мин · мягкий оттенок волосков без перегруза</span>
+              <span class="menu-sub">30 мин · мягкий оттенок волосков</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">500 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -913,11 +1045,11 @@ footer {
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908792" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908792" data-service-title="Окрашивание хной · 1 000 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Окрашивание хной</span>
-              <span class="menu-sub">45 мин · стойкое биотатуаж-окрашивание</span>
+              <span class="menu-sub">45 мин · стойкий биотатуаж</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">1 000 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -930,7 +1062,7 @@ footer {
             </span>
             <span class="menu-end">
               <span class="menu-price">1 000 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -939,11 +1071,11 @@ footer {
           <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908780" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908780" data-service-title="Долговременная укладка · 2 500 ₽">
             <span class="menu-title-wrap">
               <span class="menu-name">Долговременная укладка с окрашиванием</span>
-              <span class="menu-sub">45 мин · послушные объёмные брови на 4–6 недель</span>
+              <span class="menu-sub">45 мин · объём на 4–6 недель</span>
             </span>
             <span class="menu-end">
               <span class="menu-price">2 500 ₽</span>
-              <span class="menu-arrow" aria-hidden="true">→</span>
+              <span class="menu-arrow-circle" aria-hidden="true">→</span>
             </span>
           </a>
         </li>
@@ -963,7 +1095,7 @@ footer {
         <a class="pill-act full" href="https://wa.me/79409253108" target="_blank" rel="noopener">WhatsApp</a>
         <a class="pill-act full" href="https://www.instagram.com/dianasakanya.make" target="_blank" rel="noopener">Instagram @dianasakanya.make</a>
         <button class="pill-act full" type="button" id="share-bottom">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
             <polyline points="16 6 12 2 8 6"/>
             <line x1="12" y1="2" x2="12" y2="15"/>
@@ -986,9 +1118,13 @@ footer {
   <div class="a2hs-card">
     <strong id="a2hs-title">Добавить на главный экран</strong>
     <p id="a2hs-text"></p>
-    <button class="a2hs-close" id="a2hs-close" type="button">Понятно</button>
+    <div class="a2hs-actions">
+      <button class="a2hs-btn-primary" id="a2hs-share" type="button" hidden>Открыть меню «Поделиться»</button>
+      <button class="a2hs-btn-primary" id="a2hs-close" type="button">Понятно</button>
+    </div>
   </div>
 </div>
+
 <!-- Встроенная шторка онлайн-записи -->
 <div class="booking-modal" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-title">
   <div class="booking-sheet">
@@ -997,7 +1133,6 @@ footer {
         <strong id="booking-title">Онлайн-запись</strong>
         <span id="booking-sub">Диана Сакания · Сухум</span>
       </div>
-      <a class="booking-ext" id="booking-ext" href="#" target="_blank" rel="noopener">В браузере ↗</a>
       <button class="booking-close" id="booking-close" type="button" aria-label="Закрыть окно записи">✕</button>
     </div>
     <div class="booking-body">
@@ -1010,6 +1145,10 @@ footer {
   </div>
 </div>
 
+<a class="wa-float" href="https://wa.me/79409253108" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.25-8.24 8.25zm4.52-6.17c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.55.12-.16.25-.63.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.43.06-.66.31-.22.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+</a>
+
 <script>
 (function () {
   var root = document.documentElement;
@@ -1019,7 +1158,7 @@ footer {
   function syncThemeUI(t) {
     root.setAttribute('data-theme', t);
     if (themeBtn) themeBtn.textContent = t === 'dark' ? 'Светлая тема' : 'Тёмная тема';
-    if (metaTheme) metaTheme.setAttribute('content', t === 'light' ? '#EEF2F6' : '#0F090C');
+    if (metaTheme) metaTheme.setAttribute('content', t === 'light' ? '#F5F5F5' : '#0F090C');
   }
 
   function applyTheme(t) {
@@ -1029,7 +1168,7 @@ footer {
     try { window.name = 'ds_theme:' + t; } catch (e) {}
   }
 
-  var initialTheme = root.getAttribute('data-theme') || 'dark';
+  var initialTheme = root.getAttribute('data-theme') || 'light';
   syncThemeUI(initialTheme);
 
   if (themeBtn) {
@@ -1118,9 +1257,7 @@ footer {
     }
   }
 
-  var shareTop = document.getElementById('share-top');
   var shareBottom = document.getElementById('share-bottom');
-  if (shareTop) shareTop.addEventListener('click', handleShare);
   if (shareBottom) shareBottom.addEventListener('click', handleShare);
 
   var modal = document.getElementById('booking-modal');
@@ -1138,8 +1275,6 @@ footer {
   }
 
   function openBookingSheet(url, title) {
-    var ext = document.getElementById('booking-ext');
-    if (ext) ext.href = url;
     if (modalTitle) modalTitle.textContent = title || 'Онлайн-запись';
     if (loader) loader.classList.remove('hidden');
     if (frame) frame.src = url;
@@ -1163,8 +1298,6 @@ footer {
     if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeBookingSheet();
   });
 
-  // Запись: если виджет Altegio загрузился, окно открывается поверх сайта,
-  // иначе обычная ссылка открывает услугу в новой вкладке Altegio.
   document.querySelectorAll('a[data-url]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       var url = a.getAttribute('data-url');
@@ -1180,32 +1313,63 @@ footer {
       }
     });
   });
-})();
-</script>
-<a class="wa-float" href="https://wa.me/79409253108" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.25-8.24 8.25zm4.52-6.17c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.55.12-.16.25-.63.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.43.06-.66.31-.22.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
-</a>
 
-<script>
-(function () {
   var btn = document.getElementById('add-home');
   var sheet = document.getElementById('a2hs');
   var text = document.getElementById('a2hs-text');
+  var shareActionBtn = document.getElementById('a2hs-share');
   var closeBtn = document.getElementById('a2hs-close');
   var deferred = null;
-  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; });
-  function show(msg) { text.textContent = msg; sheet.hidden = false; }
+
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferred = e;
+  });
+
+  function showA2HS(msg, allowShare) {
+    text.textContent = msg;
+    if (shareActionBtn) {
+      if (allowShare && navigator.share && window.location.protocol === 'https:') {
+        shareActionBtn.hidden = false;
+        closeBtn.className = 'a2hs-btn-secondary';
+      } else {
+        shareActionBtn.hidden = true;
+        closeBtn.className = 'a2hs-btn-primary';
+      }
+    }
+    sheet.hidden = false;
+  }
+
+  if (shareActionBtn) {
+    shareActionBtn.addEventListener('click', function () {
+      sheet.hidden = true;
+      handleShare();
+    });
+  }
+
   if (btn) btn.addEventListener('click', function () {
-    if (deferred) { deferred.prompt(); deferred = null; return; }
+    if (deferred) {
+      deferred.prompt();
+      deferred = null;
+      return;
+    }
     var ua = navigator.userAgent || '';
-    if (/iPhone|iPad/i.test(ua)) {
-      show('Нажмите значок «Поделиться» внизу Safari, затем «На экран «Домой»». Значок появится на главном экране.');
+    var isInstagram = /Instagram/i.test(ua);
+    var isHttp = window.location.protocol === 'http:' || window.location.protocol === 'https:';
+
+    if (isInstagram) {
+      showA2HS('Вы открыли запись внутри Instagram. Нажмите три точки справа вверху и выберите «Открыть в браузере» (Safari или Chrome), чтобы сохранить ярлык на экран.', false);
+    } else if (!isHttp) {
+      showA2HS('Сейчас файл открыт из памяти телефона. После загрузки на сайт нажмите «На экран «Домой»» — и ярлык установится прямо на рабочий стол.', false);
+    } else if (/iPhone|iPad/i.test(ua)) {
+      showA2HS('Нажмите кнопку «Поделиться» (квадрат со стрелкой вверх) внизу Safari, затем выберите «На экран «Домой»».', true);
     } else if (/Android/i.test(ua)) {
-      show('Нажмите три точки справа вверху в Chrome, затем «Установить приложение» или «Добавить на главный экран».');
+      showA2HS('Нажмите три точки справа вверху в Chrome и выберите «Установить приложение» или «Добавить на главный экран».', true);
     } else {
-      show('Откройте меню браузера и выберите «Установить приложение» или «Добавить на главный экран».');
+      showA2HS('Откройте меню браузера и выберите «Установить приложение» или «Добавить на главный экран».', false);
     }
   });
+
   if (closeBtn) closeBtn.addEventListener('click', function () { sheet.hidden = true; });
   if (sheet) sheet.addEventListener('click', function (e) { if (e.target === sheet) sheet.hidden = true; });
 })();
