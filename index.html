@@ -1,12 +1,17 @@
 <!doctype html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="claude:viewport-fit-sides" content="cover">
-<title>Диана Сакания, визажист</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234A2540'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='26' fill='%23C9A46A' text-anchor='middle'%3E%25D0%2594%25D0%25A1%3C/text%3E%3C/svg%3E">
-<meta name="description" content="Онлайн-запись к визажисту Диане Сакания в Сухуме. Выберите услугу и удобное время.">
+<meta name="theme-color" content="#0F090C" id="meta-theme-color">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-title" content="Диана · Визажист">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Диана Сакания · визажист — онлайн-запись</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%23120A0E'/%3E%3Ctext x='32' y='41' font-family='Georgia,serif' font-size='25' fill='%23DFC08A' text-anchor='middle'%3E%D0%94%D0%A1%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Онлайн-запись к визажисту Диане Сакания в Сухуме. Выберите услугу и удобное время за минуту.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="Диана Сакания">
@@ -21,143 +26,607 @@
 <meta name="twitter:description" content="Выберите услугу и удобное время за минуту. Сухум, ул. Ардзинба, 50.">
 <meta name="twitter:image" content="https://dianasakania.github.io/preview.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-/* One ground, one ink, one gold accent. Everything else is space and type. */
-:root {
-  --bg: #FBF5EE;
-  --card: #FFFFFF;
-  --ink: #2B1A26;
-  --plum: #4A2540;
-  --muted: #7A6670;
-  --line: rgba(74, 37, 64, 0.14);
-  --gold: #C9A46A;
-  --cta-bg: var(--plum);
-  --cta-fg: #FBF5EE;
-  --cta-arrow-bg: var(--gold);
-  --cta-arrow-fg: var(--plum);
-  --wa: #25D366;
-  --wa-ink: #0E3B20;
-  --fg: var(--ink);
-  color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #1C121A;
-    --card: #271B25;
-    --ink: #F6EBE3;
-    --plum: #F1DCD5;
-    --muted: #BFA9B4;
-    --line: rgba(241, 220, 213, 0.16);
-    --gold: #D9B98A;
-    --cta-bg: var(--gold);
-    --cta-fg: #1C121A;
-    --cta-arrow-bg: #1C121A;
-    --cta-arrow-fg: var(--gold);
-    --fg: var(--ink);
-    color-scheme: dark;
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+// Мгновенное восстановление выбранной темы до отрисовки страницы
+(function () {
+  var t = null;
+  try { t = localStorage.getItem('ds_theme_bw'); } catch (e) {}
+  if (!t) { try { t = sessionStorage.getItem('ds_theme_bw'); } catch (e) {} }
+  if (!t && window.name && window.name.indexOf('ds_theme:') === 0) {
+    t = window.name.split(':')[1];
   }
-}
-:root[data-theme="dark"] {
-  --bg: #1C121A;
-  --card: #271B25;
-  --ink: #F6EBE3;
-  --plum: #F1DCD5;
-  --muted: #BFA9B4;
-  --line: rgba(241, 220, 213, 0.16);
-  --gold: #D9B98A;
-  --cta-bg: var(--gold);
-  --cta-fg: #1C121A;
-  --cta-arrow-bg: #1C121A;
-  --cta-arrow-fg: var(--gold);
-  --fg: var(--ink);
+  if (t === 'light' || t === 'dark') {
+    document.documentElement.setAttribute('data-theme', t);
+    var m = document.getElementById('meta-theme-color');
+    if (m) m.setAttribute('content', t === 'light' ? '#EEF2F6' : '#0F090C');
+  }
+})();
+</script>
+<style>
+/* Палитра: Тёмный бархат и шампань */
+:root {
+  --bg: #0F090C;
+  --bg-elevated: #180F14;
+  --surface: rgba(255, 245, 238, 0.035);
+  --surface-hover: rgba(223, 192, 138, 0.07);
+  --ink: #F5ECE4;
+  --muted: #9E8B92;
+  --gold: #DFC08A;
+  --gold-dim: rgba(223, 192, 138, 0.28);
+  --line: rgba(245, 236, 228, 0.1);
+  --btn-bg: #DFC08A;
+  --btn-ink: #120A0E;
+  --modal-backdrop: rgba(10, 6, 8, 0.82);
+  --glow: radial-gradient(ellipse 70% 45% at 50% 0%, rgba(138, 62, 88, 0.28) 0%, rgba(15, 9, 12, 0) 75%);
   color-scheme: dark;
 }
 
-* { box-sizing: border-box; }
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: 'Jost', system-ui, sans-serif;
-  font-size: 17px;
-  line-height: 1.55;
-  margin: 0;
+/* Палитра: Светлая дизайнерская бумага */
+:root[data-theme="light"] {
+  --bg: #F5F5F5;
+  --bg-elevated: #FFFFFF;
+  --surface: rgba(0,0,0,0.02);
+  --surface-hover: rgba(0,0,0,0.05);
+  --ink: #000000;
+  --muted: #4D4D4D;
+  --gold: #000000;
+  --gold-dim: rgba(0,0,0,0.45);
+  --line: rgba(0,0,0,0.16);
+  --btn-bg: #000000;
+  --btn-ink: #FFFFFF;
+  --modal-backdrop: rgba(0,0,0,0.5);
+  --glow: none;
+  color-scheme: light;
 }
-.wrap {
-  max-width: 760px;
-  margin: 0 auto;
-  padding-left: max(18px, env(safe-area-inset-left, 0px));
-  padding-right: max(18px, env(safe-area-inset-right, 0px));
-  padding-block: 18px 120px;
-}
-h1, h2, h3 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 600;
-  line-height: 1.02;
-  text-wrap: balance;
-  margin: 0;
-}
-h1 { font-size: clamp(52px, 13vw, 96px); letter-spacing: -0.015em; }
-h2 { font-size: clamp(38px, 9vw, 56px); }
-h3 { font-size: 28px; }
-em { font-style: italic; color: var(--gold); }
-.eyebrow { font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 600; margin: 0; color: var(--gold); }
-a { color: inherit; }
 
-/* Main CTA: full width on phones */
-.btn {
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; font-size: 16px; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: var(--glow);
+  background-repeat: no-repeat;
+  color: var(--ink);
+  font-family: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+.wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 20px max(22px, env(safe-area-inset-left, 0px)) max(64px, env(safe-area-inset-bottom, 0px)) max(22px, env(safe-area-inset-right, 0px));
+}
+
+h1, h2, h3, .serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  margin: 0;
+}
+em {
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+/* Верхняя шапка */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  white-space: nowrap;
+  min-width: 0;
+}
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.icon-btn:hover { color: var(--gold); border-color: var(--gold-dim); }
+.icon-btn svg { width: 14px; height: 14px; }
+
+/* Лёгкая текстура бархата / дизайнерской бумаги */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+:root[data-theme="light"] body::after { opacity: 0.04; }
+:root[data-theme="light"] .hero { box-shadow: 0 14px 36px rgba(70, 40, 52, 0.09); }
+:root[data-theme="light"] .contact-box { box-shadow: 0 10px 28px rgba(70, 40, 52, 0.07); }
+:root[data-theme="light"] .menu-price { color: #8A5F26; }
+:root[data-theme="light"] .hero-kicker, :root[data-theme="light"] .sec-label { color: #8A5F26; }
+
+.brand-dot {
+  position: relative;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold);
+  flex-shrink: 0;
+}
+.brand-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  opacity: 0;
+  animation: pulseRing 3.2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+@keyframes pulseRing {
+  0% { transform: scale(0.7); opacity: 0.65; }
+  75%, 100% { transform: scale(2.1); opacity: 0; }
+}
+.theme-btn {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.theme-btn:hover { color: var(--gold); border-color: var(--gold-dim); }
+
+/* Визитная карточка первого экрана */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 26px 18px 22px;
+  margin-top: 18px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(223, 192, 138, 0.12) 0%, transparent 65%),
+    linear-gradient(180deg, var(--surface) 0%, transparent 100%);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  pointer-events: none;
+}
+.hero::after {
+  content: "✦";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg);
+  color: var(--gold);
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 1;
+}
+.hero-kicker {
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 8px;
+}
+.hero h1 {
+  font-size: clamp(32px, 8.2vw, 54px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+}
+.hero-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  margin-top: 12px;
+}
+.hero-status {
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.hero-address {
+  font-size: 12.5px;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Секции */
+section {
+  margin-top: 32px;
+}
+.sec-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.sec-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+h2 {
+  font-size: clamp(32px, 7.5vw, 46px);
+  line-height: 1.02;
+  margin-bottom: 18px;
+}
+
+/* Симметричная липкая сетка фильтров */
+.tabs-bar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 94%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin: 0 -22px 26px;
+  padding: 12px 22px 14px;
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+@media (min-width: 580px) {
+  .tabs-bar {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+.tab {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 12px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+.tab[data-f="all"] {
+  grid-column: 1 / -1;
+}
+@media (min-width: 580px) {
+  .tab[data-f="all"] {
+    grid-column: auto;
+  }
+}
+.tab:hover { color: var(--ink); border-color: var(--gold-dim); }
+.tab[aria-pressed="true"] {
+  background: var(--btn-bg);
+  border-color: var(--btn-bg);
+  color: var(--btn-ink);
+  font-weight: 600;
+}
+
+/* Список услуг */
+.group-block { margin-bottom: 38px; }
+.group-block[hidden] { display: none; }
+.group-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 30px;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+.menu-row {
+  border-bottom: 1px solid var(--line);
+  transition: background-color 0.2s ease;
+}
+.menu-row:hover {
+  background: var(--surface-hover);
+}
+.menu-btn { text-decoration: none; color: inherit; box-sizing: border-box; 
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 18px 6px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  width: 100%;
-  background: var(--cta-bg);
-  color: var(--cta-fg);
-  text-decoration: none;
-  border-radius: 999px;
-  padding: 8px 8px 8px 28px;
-  font-size: 19px;
-  font-weight: 600;
-  min-height: 68px;
-  box-shadow: 0 12px 28px -14px rgba(43, 26, 38, 0.6);
-  transition: transform .25s ease, box-shadow .25s ease;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.btn .arr {
+.menu-btn:active { transform: scale(0.988); }
+.pill-act:active, .tab:active { transform: scale(0.975); }
+
+.menu-title-wrap {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+.menu-name {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+.menu-btn:hover .menu-name { color: var(--gold); }
+.menu-sub {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.menu-end {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.menu-price {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 25px;
+  font-weight: 500;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.menu-arrow {
+  font-size: 15px;
+  color: var(--muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.menu-btn:hover .menu-arrow {
+  color: var(--gold);
+  transform: translateX(3px);
+}
+
+/* Блок контактов и локации */
+.contact-box {
+  border: 1px solid var(--gold-dim);
+  border-radius: 24px;
+  padding: 20px;
+  background: var(--bg-elevated);
+}
+.contact-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.pill-act {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  min-height: 46px;
+  padding: 11px 10px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  text-decoration: none;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+.pill-act.full {
+  grid-column: 1 / -1;
+}
+.pill-act:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--surface-hover);
+}
+
+footer {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+/* Всплывающее уведомление */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: max(24px, env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%) translateY(14px);
+  background: var(--bg-elevated);
+  color: var(--gold);
+  border: 1px solid var(--gold-dim);
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 100;
+  white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Встроенная шторка онлайн-записи Altegio */
+.booking-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: var(--modal-backdrop);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+}
+@media (min-width: 640px) { .booking-modal { align-items: center; padding: 20px; } }
+.booking-modal.open { display: flex; }
+.booking-sheet {
+  width: 100%;
+  max-width: 560px;
+  height: 92dvh;
+  max-height: 780px;
+  background: var(--bg-elevated);
+  border-radius: 26px 26px 0 0;
+  border: 1px solid var(--gold-dim);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+}
+@media (min-width: 640px) { .booking-sheet { border-radius: 26px; height: 86dvh; } }
+.booking-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--bg-elevated);
+  color: var(--ink);
+  border-bottom: 1px solid var(--gold-dim);
+}
+.booking-head-info strong {
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.15;
+}
+.booking-head-info span {
+  display: block;
+  font-size: 12px;
+  color: var(--gold);
+  margin-top: 2px;
+}
+.booking-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-dim);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 16px;
   display: grid;
   place-items: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--cta-arrow-bg);
-  color: var(--cta-arrow-fg);
-  font-size: 22px;
-  line-height: 1;
+  cursor: pointer;
   flex-shrink: 0;
-  transition: transform .25s ease;
 }
-.btn:hover { transform: translateY(-2px); box-shadow: 0 18px 32px -14px rgba(43, 26, 38, 0.65); }
-.btn:hover .arr { transform: translateX(4px); }
-.btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
-@media (min-width: 640px) { .btn { width: auto; min-width: 320px; } }
-
-.wa {
-  display: inline-flex;
+.booking-body {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  background: #FFFFFF;
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
+}
+.booking-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  background: var(--wa);
-  color: var(--wa-ink);
-  text-decoration: none;
-  border-radius: 999px;
-  padding: 14px 24px;
-  font-size: 17px;
-  font-weight: 600;
-  min-height: 56px;
-  transition: transform .2s ease;
+  justify-content: center;
+  gap: 10px;
+  background: var(--bg-elevated);
+  color: var(--muted);
+  font-size: 14px;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
 }
-.wa:hover { transform: translateY(-2px); }
-.wa:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+.booking-loader.hidden { opacity: 0; }
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--gold-dim);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.booking-frame {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+}
 
-/* Floating WhatsApp */
+:root[data-theme="light"] .menu-name { font-weight: 600; }
+:root[data-theme="light"] .menu-sub { font-size: 14px; font-weight: 500; }
+:root[data-theme="light"] .menu-row { border-bottom-color: var(--line); }
+:root[data-theme="light"] .menu-list { border-top-color: #000; }
+:root[data-theme="light"] .hero { background: #FFFFFF; box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+:root[data-theme="light"] .contact-box { background: var(--bg-elevated); }
+
+
+/* Плавающая кнопка WhatsApp в палитре сайта: справа внизу, кольцо расходится */
 .wa-float {
   position: fixed;
   right: max(18px, env(safe-area-inset-right, 0px));
@@ -165,676 +634,582 @@ a { color: inherit; }
   width: 62px;
   height: 62px;
   border-radius: 50%;
-  background: var(--wa);
-  color: var(--wa-ink);
+  background: var(--btn-bg);
+  color: var(--btn-ink);
   display: grid;
   place-items: center;
-  box-shadow: 0 14px 30px -10px rgba(14, 59, 32, 0.6);
-  z-index: 50;
+  box-shadow: 0 14px 30px -10px rgba(0, 0, 0, 0.45);
+  z-index: 60;
+  text-decoration: none;
   transition: transform .2s ease;
 }
 .wa-float:hover { transform: scale(1.06); }
-.wa-float:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+.wa-float:focus-visible { outline: 3px solid var(--btn-bg); outline-offset: 4px; }
 .wa-float::before {
   content: "";
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  border: 2px solid var(--wa);
+  border: 2px solid var(--btn-bg);
   opacity: 0.5;
-  animation: ring 2.4s ease-out infinite;
+  animation: waRing 2.4s ease-out infinite;
 }
-@keyframes ring { from { transform: scale(0.9); opacity: 0.6; } to { transform: scale(1.35); opacity: 0; } }
+@keyframes waRing { from { transform: scale(0.9); opacity: 0.6; } to { transform: scale(1.35); opacity: 0; } }
+.wa-float svg { width: 28px; height: 28px; }
 @media (prefers-reduced-motion: reduce) {
   .wa-float::before { animation: none; display: none; }
-  .btn, .btn .arr, .wa, .wa-float { transition: none; }
+  .wa-float { transition: none; }
 }
 
-/* Top */
-.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 6px 0 28px; border-bottom: 1px solid var(--line); }
-.brand { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 26px; font-weight: 600; }
-.pill { font-size: 13px; letter-spacing: 0.08em; color: var(--muted); }
+/* Компактная строка статуса вместо большого заголовка: список услуг сразу на экране */
+.intro { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 18px; text-align: center; }
+.intro .hero-status { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.intro .hero-address { font-size: 14px; color: var(--muted); white-space: nowrap; }
 
-/* Hero */
-.hero { padding: 48px 0 40px; display: grid; gap: 36px; }
-.hero .lead { font-size: 19px; color: var(--muted); margin: 0; max-width: 460px; }
-.hero .note { font-size: 15px; color: var(--muted); margin: 14px 0 0; }
-.rule {
-  margin-top: 16px;
-  border: 1.5px solid var(--gold);
-  border-radius: 18px;
-  padding: 14px 18px;
-  background: color-mix(in srgb, var(--gold) 10%, transparent);
-  display: grid;
-  gap: 4px;
-}
-.rule-title { font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: var(--plum); margin: 0; }
-.rule-text { font-size: 19px; margin: 0; color: var(--ink); }
-.rule-text strong { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 30px; font-weight: 600; color: var(--gold); vertical-align: -3px; margin-left: 2px; }
+/* Кнопка «Добавить на главный экран» и подсказка */
+.add-home { margin-top: 10px; background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 12px; font-weight: 500; cursor: pointer; }
+.a2hs { position: fixed; inset: 0; z-index: 130; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; padding: 20px; }
+.a2hs[hidden] { display: none; }
+.a2hs-card { background: #FFFFFF; color: #000; border-radius: 20px; padding: 22px 20px; max-width: 360px; width: 100%; box-sizing: border-box; }
+.a2hs-card strong { font-size: 18px; display: block; margin-bottom: 10px; }
+.a2hs-card p { font-size: 15px; line-height: 1.45; margin: 0 0 16px; color: #262626; }
+.a2hs-close { width: 100%; background: #000; color: #FFFFFF; border: none; border-radius: 12px; padding: 12px; font: inherit; font-weight: 600; font-size: 15px; cursor: pointer; }
+.add-hint { font-size: 12px; color: var(--muted); line-height: 1.4; max-width: 260px; text-align: center; }
 
-/* Offer with countdown */
-.offer {
-  background: var(--plum);
-  color: var(--bg);
-  border-radius: 32px;
-  padding: clamp(28px, 6vw, 40px);
-  display: grid;
-  gap: 18px;
-}
-.offer .eyebrow { color: var(--gold); }
-.offer .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-.offer .big { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(88px, 22vw, 128px); line-height: 0.85; font-weight: 600; color: var(--gold); }
-.offer .small { font-size: 20px; line-height: 1.3; padding-bottom: 8px; }
-.offer .timer {
-  border-top: 1px solid rgba(251, 245, 238, 0.22);
-  padding-top: 16px;
-  font-size: 15px;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-  opacity: 0.92;
-}
-.offer .timer strong { font-variant-numeric: tabular-nums; color: var(--gold); font-weight: 600; }
-.units { display: flex; gap: 10px; flex-wrap: wrap; width: 100%; }
-.units > div { background: rgba(251, 245, 238, 0.1); border-radius: 16px; padding: 10px 14px; min-width: 84px; flex: 1 1 84px; text-align: center; }
-.units strong { display: block; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 40px; line-height: 1; font-weight: 600; font-variant-numeric: tabular-nums; }
-.units small { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.8; }
-
-/* Sections, separated by hairlines */
-section { padding: 48px 0 0; margin-top: 48px; border-top: 1px solid var(--line); }
-.sec-head { display: grid; gap: 10px; margin-bottom: 26px; }
-
-/* Services: plain list with hairlines, no colour blocks */
-.services { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
-.services li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--line);
-  font-size: 21px;
-}
-.services li:first-child { border-top: 1px solid var(--line); }
-.services li a { flex: 1; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: inherit; text-decoration: none; min-width: 0; }
-.services li a::after { content: "→"; color: var(--gold); font-size: 20px; transition: transform .25s ease; flex-shrink: 0; }
-.services li a:hover { color: var(--gold); }
-.services li a:hover::after { transform: translateX(4px); }
-.services li a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 6px; }
-/* Tap/hover highlight: a soft gold band behind the whole row */
-.services li {
-  margin: 0 -14px;
-  padding: 18px 14px;
-  border-radius: 16px;
-  border-bottom-color: transparent;
-  transition: background-color .2s ease, transform .15s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-.services li:hover { background-color: color-mix(in srgb, var(--gold) 14%, transparent); }
-.services li:active { background-color: color-mix(in srgb, var(--gold) 28%, transparent); transform: scale(0.99); }
-.services li a:hover { color: var(--plum); }
-@media (prefers-reduced-motion: reduce) { .services li { transition: none; } }
-.services .nm { flex: 1; min-width: 0; display: grid; gap: 2px; }
-.services .nm small { font-size: 14px; color: var(--muted); }
-.services .pr { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 34px; font-weight: 600; color: var(--plum); white-space: nowrap; font-variant-numeric: tabular-nums; line-height: 1; }
-.services .cat { font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
-.group-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 30px; font-weight: 600; margin: 28px 0 4px; }
-.group-title:first-of-type { margin-top: 0; }
-.group-title { display: flex; align-items: center; gap: 12px; }
-.group-title svg { width: 28px; height: 28px; color: var(--gold); flex-shrink: 0; }
-
-/* Steps: vertical timeline */
-.timeline { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: 28px; }
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 21px;
-  top: 22px;
-  bottom: 22px;
-  width: 1px;
-  background: var(--gold);
-}
-.timeline li { display: grid; grid-template-columns: 44px 1fr; gap: 20px; position: relative; }
-.timeline .dot {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid var(--gold);
-  background: var(--bg);
-  color: var(--plum);
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 22px;
-  font-weight: 600;
-  display: grid;
-  place-items: center;
-  position: relative;
-  z-index: 1;
-}
-.timeline b { display: block; font-size: 20px; font-weight: 600; margin-bottom: 2px; }
-.timeline span.t { color: var(--muted); }
-
-/* Visit / contacts */
-.contact { display: grid; gap: 22px; }
-.contact .addr { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(34px, 8vw, 44px); line-height: 1.05; font-weight: 600; }
-.phone-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 18px; }
-.phone-row strong { font-weight: 600; }
-.copy {
-  font: inherit;
-  font-size: 14px;
-  background: transparent;
-  color: var(--plum);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 6px 14px;
-  cursor: pointer;
-  min-height: 36px;
-}
-.copy:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
-.contact .muted { color: var(--muted); font-size: 16px; margin: 0; }
-.contact .muted a { color: var(--plum); }
-.contact-actions { display: grid; gap: 12px; }
-
-footer { margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-/* Phone: keep the booking button above the fold */
-@media (max-width: 600px) {
-  .top { padding: 4px 0 16px; }
-  .hero { padding: 20px 0 16px; gap: 20px; }
-  .hero h1 { font-size: 40px !important; margin-top: 10px !important; }
-  .hero .eyebrow { font-size: 12px; }
-}
-
-/* ---- Motion: soft, premium, no bounce ---- */
-.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
-.js .reveal.in { opacity: 1; transform: none; }
-.group-title { position: relative; width: fit-content; }
-.group-title::after { content: ""; position: absolute; left: 40px; bottom: -6px; height: 1px; width: 0; background: var(--gold); transition: width .6s cubic-bezier(.2,.7,.2,1); }
-.group-title.in::after { width: calc(100% - 40px); }
-.btn { position: relative; overflow: hidden; transition: transform .35s ease, box-shadow .35s ease; }
-.btn::before { content: ""; position: absolute; top: 0; left: -75%; width: 50%; height: 100%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.28), transparent); transform: skewX(-20deg); transition: left .7s ease; pointer-events: none; }
-.btn:hover::before, .btn:focus-visible::before { left: 130%; }
-.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -12px rgba(74,37,64,.55); }
-.btn:active { transform: translateY(0) scale(.99); }
-.offer { transition: transform .5s ease, box-shadow .5s ease; }
-.offer:hover { transform: translateY(-3px); box-shadow: 0 22px 40px -28px rgba(74,37,64,.45); }
-.timeline li .dot { transition: background-color .4s ease, color .4s ease, box-shadow .4s ease; }
-.timeline li.in .dot { box-shadow: 0 0 0 6px color-mix(in srgb, var(--gold) 18%, transparent); }
-.timeline li .dot { transition-delay: var(--d, 0s); }
-@media (prefers-reduced-motion: reduce) {
-  .js .reveal { opacity: 1; transform: none; transition: none; }
-  .group-title::after { transition: none; }
-  .btn, .btn::before, .offer { transition: none; }
-}
-
-/* ---- Stronger motion: blocks fly in from the sides, CTA glows ---- */
-.js .reveal.from-left { transform: translateX(-56px); }
-.js .reveal.from-right { transform: translateX(56px); }
-.js .hero h1.reveal { transform: scale(.94); transition-duration: 1.2s; }
-.js .reveal.in.from-left, .js .reveal.in.from-right, .js .hero h1.reveal.in { transform: none; }
-@keyframes ctaGlow {
-  0%, 100% { box-shadow: 0 8px 18px -10px rgba(74,37,64,.45), 0 0 0 0 rgba(201,164,106,0); }
-  50% { box-shadow: 0 16px 34px -10px rgba(74,37,64,.55), 0 0 0 6px rgba(201,164,106,.18); }
-}
-@keyframes ctaShine {
-  0%, 55% { left: -75%; }
-  100% { left: 130%; }
-}
-.btn { animation: ctaGlow 3.6s ease-in-out infinite; }
-.btn::before { animation: ctaShine 4.2s ease-in-out infinite; }
-.btn:hover::before { animation: none; left: 130%; }
-.btn:hover { animation-play-state: paused; }
-@media (prefers-reduced-motion: reduce) {
-  .js .reveal.from-left, .js .reveal.from-right, .js .hero h1.reveal { transform: none; }
-  .btn, .btn::before { animation: none; }
-}
-
-/* Light sweep running along the bottom edge of the CTA */
-.btn::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent 0%, rgba(217,185,138,.95) 50%, transparent 100%);
-  background-size: 45% 100%;
-  background-repeat: no-repeat;
-  background-position: -45% 0;
-  pointer-events: none;
-  animation: ctaEdge 2.8s linear infinite;
-}
-@keyframes ctaEdge { from { background-position: -45% 0; } to { background-position: 145% 0; } }
-@media (prefers-reduced-motion: reduce) { .btn::after { animation: none; display: none; } }
-/* Floating booking button: appears after the first screen, sits left of the WhatsApp button. */
-.book-float {
-  position: fixed;
-  left: max(18px, env(safe-area-inset-left, 0px));
-  bottom: max(18px, env(safe-area-inset-bottom, 0px));
-  z-index: 40;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 12px 12px 22px;
-  border-radius: 999px;
-  background: #4A2540;
-  color: #F6E7D2;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  white-space: nowrap;
-  box-shadow: 0 14px 30px -12px rgba(74, 37, 64, .6);
-  opacity: 0;
-  transform: translateY(24px);
-  pointer-events: none;
-  transition: opacity .4s ease, transform .4s ease;
-}
-.book-float.show { opacity: 1; transform: none; pointer-events: auto; }
-.book-float .ar {
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  background: #C9A46A;
-  color: #4A2540;
-  display: grid;
-  place-items: center;
-  font-size: 17px;
-  line-height: 1;
-}
-.book-float:focus-visible { outline: 2px solid #C9A46A; outline-offset: 3px; }
-.book-float.show { animation: ctaGlow 3.6s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) { .book-float { transition: none; } }
-/* Service group tabs: one pill per group, the active one filled in plum. */
-.tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 28px; }
-.tab {
-  border: 1px solid #C9A46A;
-  background: transparent;
-  color: #4A2540;
-  padding: 10px 18px;
-  border-radius: 999px;
-  font: inherit;
-  font-size: 14px;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background .3s ease, color .3s ease;
-}
-.tab[aria-pressed="true"] { background: #4A2540; border-color: #4A2540; color: #F6E7D2; }
-.tab:focus-visible { outline: 2px solid #C9A46A; outline-offset: 3px; }
-.group-title[hidden], .services[hidden] { display: none; }
-/* Extras: scroll progress line, faint paper grain on the hero, thin gold dividers between sections. */
-.progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: #C9A46A; z-index: 50; }
-.hero { position: relative; }
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: .07;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-section + section { margin-top: 56px; }
-section + section::before {
-  content: "";
-  display: block;
-  height: 1px;
-  margin: 0 0 48px;
-  background: linear-gradient(90deg, transparent, #C9A46A 20%, #C9A46A 80%, transparent);
-}
-/* Round portrait next to the name in the header. Hidden automatically if diana.jpg is missing. */
-.brand { display: flex; align-items: center; gap: 12px; }
-.avatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center top;
-  border: 1.5px solid var(--gold);
-  flex-shrink: 0;
-  max-width: 100%;
-}
-/* Reveal blocks start shifted sideways; clip them so nothing off-screen widens the page. */
-.wrap { overflow-x: clip; }
-/* Filter tabs: one horizontal strip that scrolls sideways on phones, no wrapping, 8px gaps. */
-.tabs {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 6px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
-  margin: 0 -18px 40px;
-  padding: 4px 18px 14px;
-  border-bottom: 1px solid var(--line);
-}
-.tabs::-webkit-scrollbar { display: none; }
-.tab {
-  flex: 0 0 auto;
-  padding: 6px 10px;
-  font-size: 12px;
-  letter-spacing: 0;
-  text-transform: none;
-  white-space: nowrap;
-}
-/* Plum WhatsApp button, to match the palette instead of the bright green. */
-.wa-float { background: #4A2538; color: #F6E7D2; }
-.wa-float::before { border-color: #4A2538; }
-/* Service rows as soft cards with a gold arrow button, so they read as tappable. */
-.services { gap: 10px; grid-template-columns: minmax(0, 1fr); }
-.services li,
-.services li:first-child {
-  margin: 0;
-  padding: 0;
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-}
-.services li a { padding: 16px 16px 16px 20px; }
-.services li a::after {
-  content: "→";
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: var(--gold);
-  color: var(--plum);
-  font-size: 17px;
-  line-height: 1;
-  margin-left: 4px;
-}
-.services li:hover { background-color: color-mix(in srgb, var(--gold) 10%, var(--card)); }
-.services li:active { background-color: color-mix(in srgb, var(--gold) 20%, var(--card)); transform: scale(0.99); }
-/* Service card grid: name takes the free space and may wrap, price and arrow never wrap. */
-.services li a {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  align-items: center;
-  gap: 10px;
-}
-.services .nm { min-width: 0; overflow-wrap: break-word; font-size: 16px; }
-.services .pr { font-size: 20px; font-weight: 600; white-space: nowrap; }
-.services li a::after { white-space: nowrap; }
-/* Compact header: tighter name/label spacing and less air around the divider line. */
-.brand { margin-bottom: 4px; }
-.pill { margin-top: 0; }
-.top { padding: 4px 0 14px; }
-/* Hero: tighter space below the booking button so the services heading fits on the first screen. */
-.hero { padding-bottom: 24px; }
-/* Round 2: bigger service text, four equal filter columns, tighter gap under the hero. */
-.services .nm { font-size: 17px; font-weight: 500; }
-.services .nm small { font-size: 14px; }
-.services .pr { font-size: 20px; font-weight: 600; }
-.services li a { padding: 16px; }
-.tabs {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  width: 100%;
-  margin: 0 0 40px;
-  padding: 4px 0 14px;
-  overflow: visible;
-}
-.tab {
-  padding: 9px 2px;
-  font-size: 12.5px;
-  text-align: center;
-  min-width: 0;
-  overflow: hidden;
-}
-#services { margin-top: 24px; padding-top: 32px; }
-/* Round 2: larger service text, 4-column filter row, tighter gap before the services block. */
-.services .nm { font-size: 17px; font-weight: 500; }
-.services .nm small { font-size: 14px; }
-.services li a { padding: 16px; }
-.tabs {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  width: 100%;
-  margin: 0 0 40px;
-  padding: 4px 0 14px;
-  overflow: visible;
-}
-.tab {
-  min-width: 0;
-  padding: 9px 2px;
-  font-size: 12.5px;
-  text-align: center;
-}
-#services { margin-top: 40px; padding-top: 32px; }
-/* Final pass: smooth in-page scroll, larger type for Chrome and Instagram. */
-html { scroll-behavior: smooth; }
-body { font-size: 18px; }
-.services .nm { font-size: 19px; font-weight: 600; }
-.services .nm small { font-size: 15px; font-weight: 400; }
-.services .pr { font-size: 22px; font-weight: 600; }
-.tab { font-size: clamp(12px, 3.5vw, 14px); padding: 10px 4px; }
-/* WhatsApp link in the contacts block: site colours instead of bright green. */
-.wa {
-  background: var(--card);
-  color: var(--plum);
-  border: 1.5px solid var(--gold);
-}
-.wa:hover { border-color: var(--gold); color: var(--plum); }
-/* Services block follows the hero button directly: the hero already gives 24px below it. */
-#services { margin-top: 0; }
-/* Bigger for real phone browsers: root size, service cards, arrow, filter labels. */
-html { font-size: 18px; }
-.services .nm { font-size: 20px; font-weight: 600; }
-.services .nm small { font-size: 15px; }
-.services .pr { font-size: 23px; font-weight: 600; }
-.services li a { padding: 18px 16px; }
-.services li a::after { width: 42px; height: 42px; }
-.tab { font-size: 13px; padding: 10px 2px; overflow: hidden; text-overflow: ellipsis; }
+.booking-ext { font-size: 12px; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; text-decoration: none; white-space: nowrap; margin-right: 8px; }
 </style>
 </head>
 <body>
-<div class="progress" id="progress" aria-hidden="true"></div>
-<div class="wrap">
 
-  <header class="top">
-    <div class="brand">Диана Сакания</div>
-    <span class="pill">Визажист · Сухум</span>
+<div class="wrap">
+  <header class="topbar">
+    <a class="brand-link" href="#">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>Диана Сакания</span>
+    </a>
+    <div class="topbar-actions">
+      <button class="icon-btn" id="share-top" type="button" aria-label="Поделиться">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+          <polyline points="16 6 12 2 8 6"/>
+          <line x1="12" y1="2" x2="12" y2="15"/>
+        </svg>
+      </button>
+      <button class="theme-btn" id="theme-toggle" type="button">Светлая тема</button>
+    </div>
   </header>
 
-  <div class="hero">
-    <div>
-      <p class="eyebrow">Natural beauty</p>
-      <h1 style="margin-top:16px">Запишитесь <em>на удобное</em> время</h1>
-      <p class="muted" style="margin:20px 0 0; font-size:16px">Онлайн-запись · Сухум, Ардзинба 50</p>
-    </div>
-
-    <div>
-      <a class="btn" href="#services">Записаться онлайн <span class="arr">→</span></a>
-    </div>
+  <div class="intro">
+    <span class="hero-status">Запись открыта</span>
+    <span class="hero-address">Сухум, ул.&nbsp;Ардзинба,&nbsp;50</span>
+    <button class="add-home" id="add-home" type="button">+ Добавить на главный экран</button>
+    <span class="add-hint">Запись в один тап — значок на рабочем столе</span>
   </div>
 
   <section id="services">
-    <div class="sec-head">
-      <p class="eyebrow">Услуги</p>
-      <h2>Выберите <em>процедуру</em></h2>
-    </div>
+    <div class="sec-label">Онлайн-запись</div>
+    <h2>Выберите <em>процедуру</em></h2>
 
-    <div class="tabs" role="group" aria-label="Группы услуг">
+    <div class="tabs-bar" id="tabs-bar" role="group" aria-label="Фильтр услуг">
+      <button class="tab" type="button" data-f="all" aria-pressed="true">Все услуги</button>
       <button class="tab" type="button" data-f="0" aria-pressed="false">Макияж</button>
+      <button class="tab" type="button" data-f="3" aria-pressed="false">Брови</button>
       <button class="tab" type="button" data-f="1" aria-pressed="false">Перманент</button>
       <button class="tab" type="button" data-f="2" aria-pressed="false">Коррекция</button>
-      <button class="tab" type="button" data-f="3" aria-pressed="false">Брови</button>
     </div>
 
-    <h3 class="group-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Макияж</h3>
-    <ul class="services">
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908074" target="_blank" rel="noopener"><span class="nm">Дневной макияж<small>45 мин</small></span><span class="pr">2 500 ₽</span></a></li>
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908080" target="_blank" rel="noopener"><span class="nm">Вечерний макияж<small>45 мин</small></span><span class="pr">3 000 ₽</span></a></li>
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908073" target="_blank" rel="noopener"><span class="nm">Свадебный макияж<small>1 ч</small></span><span class="pr">5 000 ₽</span></a></li>
-    </ul>
+    <!-- Группа 0: Макияж -->
+    <div class="group-block" data-group="0">
+      <h3 class="group-heading">Макияж</h3>
+      <ul class="menu-list">
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908074" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908074" data-service-title="Дневной макияж · 2 500 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Дневной макияж</span>
+              <span class="menu-sub">45 мин · лёгкий естественный тон и свежесть</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">2 500 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
 
-    <h3 class="group-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l4-1L19 7l-3-3L4 17l-1 4z"/><path d="M14 6l4 4"/></svg>Перманентный макияж</h3>
-    <ul class="services">
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908190" target="_blank" rel="noopener"><span class="nm">Брови<small>1 ч 30 мин</small></span><span class="pr">7 000 ₽</span></a></li>
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908193" target="_blank" rel="noopener"><span class="nm">Губы<small>1 ч 30 мин</small></span><span class="pr">7 000 ₽</span></a></li>
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908097" target="_blank" rel="noopener"><span class="nm">Стрелки<small>1 ч 30 мин</small></span><span class="pr">7 000 ₽</span></a></li>
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908088" target="_blank" rel="noopener"><span class="nm">Межреснички<small>1 ч 30 мин</small></span><span class="pr">5 000 ₽</span></a></li>
-    </ul>
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908080" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908080" data-service-title="Вечерний макияж · 3 000 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Вечерний макияж</span>
+              <span class="menu-sub">45 мин · выразительный образ на торжество</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">3 000 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
 
-    <h3 class="group-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></svg>Коррекция перманентного макияжа</h3>
-    <ul class="services">
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908199" target="_blank" rel="noopener"><span class="nm">Коррекция бровей<small>1 ч</small></span><span class="pr">4 000 ₽</span></a></li>
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908203" target="_blank" rel="noopener"><span class="nm">Коррекция губ<small>1 ч</small></span><span class="pr">4 000 ₽</span></a></li>
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908206" target="_blank" rel="noopener"><span class="nm">Коррекция стрелок<small>1 ч</small></span><span class="pr">4 000 ₽</span></a></li>
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908198" target="_blank" rel="noopener"><span class="nm">Коррекция межресничек<small>1 ч</small></span><span class="pr">3 000 ₽</span></a></li>
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908205" target="_blank" rel="noopener"><span class="nm">Удаление перманентного макияжа<small>1 ч</small></span><span class="pr">4 000 ₽</span></a></li>
-    </ul>
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908073" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908073" data-service-title="Свадебный макияж · 5 000 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Свадебный макияж</span>
+              <span class="menu-sub">1 ч · максимальная стойкость до конца вечера</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">5 000 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
 
-    <h3 class="group-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15c3-6 13-8 18 0"/></svg>Брови</h3>
-    <ul class="services">
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908793" target="_blank" rel="noopener"><span class="nm">Окрашивание краской<small>30 мин</small></span><span class="pr">500 ₽</span></a></li>
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908792" target="_blank" rel="noopener"><span class="nm">Окрашивание хной<small>45 мин</small></span><span class="pr">1 000 ₽</span></a></li>
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908787" target="_blank" rel="noopener"><span class="nm">Коррекция и окрашивание<small>30 мин</small></span><span class="pr">1 000 ₽</span></a></li>
-      <li><a href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908780" target="_blank" rel="noopener"><span class="nm">Долговременная укладка с окрашиванием<small>45 мин</small></span><span class="pr">2 500 ₽</span></a></li>
-    </ul>
+    <!-- Группа 1: Перманентный макияж -->
+    <div class="group-block" data-group="1">
+      <h3 class="group-heading">Перманентный макияж</h3>
+      <ul class="menu-list">
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908190" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908190" data-service-title="Перманент бровей · 7 000 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Брови</span>
+              <span class="menu-sub">1 ч 30 мин · мягкое пудровое напыление</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">7 000 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908193" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908193" data-service-title="Перманент губ · 7 000 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Губы</span>
+              <span class="menu-sub">1 ч 30 мин · акварельный эффект и ровный контур</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">7 000 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908097" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908097" data-service-title="Перманент стрелок · 7 000 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Стрелки</span>
+              <span class="menu-sub">1 ч 30 мин · классика или мягкая растушёвка</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">7 000 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908088" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908088" data-service-title="Межреснички · 5 000 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Межреснички</span>
+              <span class="menu-sub">1 ч 30 мин · эффект густых ресниц без макияжа</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">5 000 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Группа 2: Коррекция перманентного макияжа -->
+    <div class="group-block" data-group="2">
+      <h3 class="group-heading">Коррекция перманентного макияжа</h3>
+      <ul class="menu-list">
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908199" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908199" data-service-title="Коррекция бровей · 4 000 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Коррекция бровей</span>
+              <span class="menu-sub">1 ч · закрепление оттенка через 1–2 месяца</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">4 000 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908203" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908203" data-service-title="Коррекция губ · 4 000 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Коррекция губ</span>
+              <span class="menu-sub">1 ч · доработка насыщенности и контура</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">4 000 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908206" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908206" data-service-title="Коррекция стрелок · 4 000 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Коррекция стрелок</span>
+              <span class="menu-sub">1 ч · фиксация чёткости и глубины цвета</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">4 000 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908198" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908198" data-service-title="Коррекция межресничек · 3 000 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Коррекция межресничек</span>
+              <span class="menu-sub">1 ч · обновление или закрепление пигмента</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">3 000 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908205" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908205" data-service-title="Удаление перманента · 4 000 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Удаление перманентного макияжа</span>
+              <span class="menu-sub">1 ч · бережное осветление старого пигмента</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">4 000 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Группа 3: Брови -->
+    <div class="group-block" data-group="3">
+      <h3 class="group-heading">Брови</h3>
+      <ul class="menu-list">
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908793" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908793" data-service-title="Окрашивание краской · 500 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Окрашивание краской</span>
+              <span class="menu-sub">30 мин · мягкий оттенок волосков без перегруза</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">500 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908792" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908792" data-service-title="Окрашивание хной · 1 000 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Окрашивание хной</span>
+              <span class="menu-sub">45 мин · стойкое биотатуаж-окрашивание</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">1 000 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908787" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908787" data-service-title="Коррекция и окрашивание · 1 000 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Коррекция и окрашивание</span>
+              <span class="menu-sub">30 мин · архитектура формы + цвет</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">1 000 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+
+        <li class="menu-row">
+          <a class="menu-btn" href="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908780" target="_blank" rel="noopener" data-url="https://n1474067.alteg.io/company/1400034/personal/short?o=m3116558s13908780" data-service-title="Долговременная укладка · 2 500 ₽">
+            <span class="menu-title-wrap">
+              <span class="menu-name">Долговременная укладка с окрашиванием</span>
+              <span class="menu-sub">45 мин · послушные объёмные брови на 4–6 недель</span>
+            </span>
+            <span class="menu-end">
+              <span class="menu-price">2 500 ₽</span>
+              <span class="menu-arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
   </section>
 
-  <section>
-    <div class="sec-head">
-      <p class="eyebrow">Как записаться</p>
-      <h2>Два <em>шага</em></h2>
-    </div>
-    <ol class="timeline">
-      <li><span class="dot">1</span><div><b>Выберите услугу</b><span class="t">Нажмите «Записаться онлайн» и отметьте нужную процедуру.</span></div></li>
-      <li><span class="dot">2</span><div><b>Выберите время</b><span class="t">Свободные окна видны сразу, без звонков и переписки.</span></div></li>
-    </ol>
-  </section>
+  <!-- Контакты -->
+  <section id="contacts">
+    <div class="sec-label">Локация</div>
+    <h2>Сухум, <em>ул. Ардзинба, 50</em></h2>
 
-  <section>
-    <div class="sec-head">
-      <p class="eyebrow">Адрес и контакты</p>
-      <h2>Сухум, <em>Ардзинба 50</em></h2>
-    </div>
-    <div class="contact">
-      <div class="phone-row">
-        <span>Телефон:</span>
-        <strong id="phone">+7 940 925-31-08</strong>
-        <button class="copy" type="button" id="copy-btn">Скопировать</button>
-      </div>
+    <div class="contact-box">
       <div class="contact-actions">
-        <a class="wa" href="https://wa.me/79409253108" target="_blank" rel="noopener" style="justify-content:center">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.5-4.5A9 9 0 1 1 8 19.5L3 21z"/><path d="M9 10c0 2.5 2.5 5 5 5l1-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2-1.5 1z"/></svg>
-          Написать в WhatsApp
-        </a>
+        <a class="pill-act" href="https://yandex.ru/maps/?text=%D0%A1%D1%83%D1%85%D1%83%D0%BC%2C+%D1%83%D0%BB.+%D0%90%D1%80%D0%B4%D0%B7%D0%B8%D0%BD%D0%B1%D0%B0%2C+50" target="_blank" rel="noopener">Яндекс Карты ↗</a>
+        <a class="pill-act" href="https://maps.google.com/?q=%D0%A1%D1%83%D1%85%D1%83%D0%BC%2C+%D1%83%D0%BB.+%D0%90%D1%80%D0%B4%D0%B7%D0%B8%D0%BD%D0%B1%D0%B0%2C+50" target="_blank" rel="noopener">Google Maps ↗</a>
+        <a class="pill-act full" href="https://wa.me/79409253108" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="pill-act full" href="https://www.instagram.com/dianasakanya.make" target="_blank" rel="noopener">Instagram @dianasakanya.make</a>
+        <button class="pill-act full" type="button" id="share-bottom">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+            <polyline points="16 6 12 2 8 6"/>
+            <line x1="12" y1="2" x2="12" y2="15"/>
+          </svg>
+          <span>Поделиться</span>
+        </button>
       </div>
-      <p class="muted">Работы смотрите в Instagram <a href="https://www.instagram.com/dianasakanya.make" target="_blank" rel="noopener">@dianasakanya.make</a>.</p>
     </div>
   </section>
 
   <footer>
-    <span>Диана Сакания · Визажист · Сухум</span>
+    <span>Диана Сакания · Визажист</span>
+    <span>Сухум, ул. Ардзинба, 50</span>
   </footer>
-
 </div>
 
-<a class="wa-float" href="https://wa.me/79409253108" target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="Написать в WhatsApp">
-  <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.5-4.5A9 9 0 1 1 8 19.5L3 21z"/><path d="M9 10c0 2.5 2.5 5 5 5l1-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2-1.5 1z"/></svg>
+<div class="toast" id="toast" role="status" aria-live="polite">Ссылка скопирована</div>
+
+<div class="a2hs" id="a2hs" role="dialog" aria-modal="true" aria-labelledby="a2hs-title" hidden>
+  <div class="a2hs-card">
+    <strong id="a2hs-title">Добавить на главный экран</strong>
+    <p id="a2hs-text"></p>
+    <button class="a2hs-close" id="a2hs-close" type="button">Понятно</button>
+  </div>
+</div>
+<!-- Встроенная шторка онлайн-записи -->
+<div class="booking-modal" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+  <div class="booking-sheet">
+    <div class="booking-head">
+      <div class="booking-head-info">
+        <strong id="booking-title">Онлайн-запись</strong>
+        <span id="booking-sub">Диана Сакания · Сухум</span>
+      </div>
+      <a class="booking-ext" id="booking-ext" href="#" target="_blank" rel="noopener">В браузере ↗</a>
+      <button class="booking-close" id="booking-close" type="button" aria-label="Закрыть окно записи">✕</button>
+    </div>
+    <div class="booking-body">
+      <div class="booking-loader" id="booking-loader">
+        <div class="spinner"></div>
+        <span>Загружаем расписание...</span>
+      </div>
+      <iframe class="booking-frame" id="booking-frame" src="about:blank" title="Окно онлайн-записи" allow="geolocation"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('theme-toggle');
+  var metaTheme = document.getElementById('meta-theme-color');
+
+  function syncThemeUI(t) {
+    root.setAttribute('data-theme', t);
+    if (themeBtn) themeBtn.textContent = t === 'dark' ? 'Светлая тема' : 'Тёмная тема';
+    if (metaTheme) metaTheme.setAttribute('content', t === 'light' ? '#EEF2F6' : '#0F090C');
+  }
+
+  function applyTheme(t) {
+    syncThemeUI(t);
+    try { localStorage.setItem('ds_theme_bw', t); } catch (e) {}
+    try { sessionStorage.setItem('ds_theme_bw', t); } catch (e) {}
+    try { window.name = 'ds_theme:' + t; } catch (e) {}
+  }
+
+  var initialTheme = root.getAttribute('data-theme') || 'dark';
+  syncThemeUI(initialTheme);
+
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+    });
+  }
+
+  var tabsBar = document.getElementById('tabs-bar');
+  var tabs = document.querySelectorAll('.tab');
+  var groups = document.querySelectorAll('.group-block');
+
+  function filterGroup(val) {
+    tabs.forEach(function (t) {
+      t.setAttribute('aria-pressed', t.getAttribute('data-f') === val ? 'true' : 'false');
+    });
+    groups.forEach(function (g) {
+      g.hidden = !(val === 'all' || g.getAttribute('data-group') === val);
+    });
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      var val = t.getAttribute('data-f');
+      filterGroup(val);
+      var targetEl = val === 'all'
+        ? document.getElementById('services')
+        : document.querySelector('.group-block[data-group="' + val + '"]');
+      if (targetEl) {
+        var barH = tabsBar ? tabsBar.offsetHeight : 110;
+        var top = targetEl.getBoundingClientRect().top + window.scrollY - barH - 12;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      }
+    });
+  });
+
+  var toast = document.getElementById('toast');
+  var toastTimer;
+
+  function showToast(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2200);
+  }
+
+  function copyFallback(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        showToast('Ссылка скопирована');
+      }, function () {
+        showToast('Ссылка: ' + text);
+      });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast('Ссылка скопирована');
+      } catch (e) {
+        showToast('Ссылка: ' + text);
+      }
+      document.body.removeChild(ta);
+    }
+  }
+
+  function handleShare() {
+    var shareUrl = (window.location.href && window.location.href.indexOf('http') === 0)
+      ? window.location.href
+      : 'https://dianasakania.github.io/';
+    var shareData = {
+      title: 'Диана Сакания · визажист — онлайн-запись',
+      text: 'Онлайн-запись к визажисту Диане Сакания в Сухуме',
+      url: shareUrl
+    };
+    if (navigator.share) {
+      navigator.share(shareData).catch(function () {});
+    } else {
+      copyFallback(shareUrl);
+    }
+  }
+
+  var shareTop = document.getElementById('share-top');
+  var shareBottom = document.getElementById('share-bottom');
+  if (shareTop) shareTop.addEventListener('click', handleShare);
+  if (shareBottom) shareBottom.addEventListener('click', handleShare);
+
+  var modal = document.getElementById('booking-modal');
+  var frame = document.getElementById('booking-frame');
+  var loader = document.getElementById('booking-loader');
+  var modalTitle = document.getElementById('booking-title');
+  var modalClose = document.getElementById('booking-close');
+
+  if (frame) {
+    frame.addEventListener('load', function () {
+      if (frame.src && frame.src !== 'about:blank' && loader) {
+        loader.classList.add('hidden');
+      }
+    });
+  }
+
+  function openBookingSheet(url, title) {
+    var ext = document.getElementById('booking-ext');
+    if (ext) ext.href = url;
+    if (modalTitle) modalTitle.textContent = title || 'Онлайн-запись';
+    if (loader) loader.classList.remove('hidden');
+    if (frame) frame.src = url;
+    if (modal) modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeBookingSheet() {
+    if (modal) modal.classList.remove('open');
+    if (frame) frame.src = 'about:blank';
+    document.body.style.overflow = '';
+  }
+
+  if (modalClose) modalClose.addEventListener('click', closeBookingSheet);
+  if (modal) {
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeBookingSheet();
+    });
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeBookingSheet();
+  });
+
+  // Запись: если виджет Altegio загрузился, окно открывается поверх сайта,
+  // иначе обычная ссылка открывает услугу в новой вкладке Altegio.
+  document.querySelectorAll('a[data-url]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var url = a.getAttribute('data-url');
+      var m = /m3116558s(\d+)/.exec(url);
+      var sid = m ? Number(m[1]) : null;
+      var w = window.yWidget || (window.ms_booking && window.ms_booking.widget);
+      if (sid && w && typeof w.show === 'function') {
+        try { e.preventDefault(); w.show({ staff_id: 3116558, service_ids: [sid] }); return; } catch (err) {}
+      }
+      if (sid) {
+        e.preventDefault();
+        openBookingSheet(url, a.getAttribute('data-service-title') || 'Онлайн-запись');
+      }
+    });
+  });
+})();
+</script>
+<a class="wa-float" href="https://wa.me/79409253108" target="_blank" rel="noopener" aria-label="Написать в WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.25-8.24 8.25zm4.52-6.17c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.55.12-.16.25-.63.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.42-.55-.42h-.47c-.16 0-.43.06-.66.31-.22.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
 </a>
 
 <script>
 (function () {
-  // Copy phone number, with a selection fallback.
-  var btn = document.getElementById('copy-btn');
-  var phone = document.getElementById('phone');
-  if (!btn || !phone) return;
-  btn.addEventListener('click', function () {
-    var text = phone.textContent.trim();
-    var done = function () { btn.textContent = 'Скопировано'; setTimeout(function () { btn.textContent = 'Скопировать'; }, 1600); };
-    var fallback = function () {
-      var r = document.createRange();
-      r.selectNodeContents(phone);
-      var s = window.getSelection();
-      s.removeAllRanges();
-      s.addRange(r);
-      btn.textContent = 'Выделено, нажмите «Копировать»';
-    };
-    try {
-      navigator.clipboard.writeText(text).then(done, fallback);
-    } catch (e) {
-      fallback();
+  var btn = document.getElementById('add-home');
+  var sheet = document.getElementById('a2hs');
+  var text = document.getElementById('a2hs-text');
+  var closeBtn = document.getElementById('a2hs-close');
+  var deferred = null;
+  window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); deferred = e; });
+  function show(msg) { text.textContent = msg; sheet.hidden = false; }
+  if (btn) btn.addEventListener('click', function () {
+    if (deferred) { deferred.prompt(); deferred = null; return; }
+    var ua = navigator.userAgent || '';
+    if (/iPhone|iPad/i.test(ua)) {
+      show('Нажмите значок «Поделиться» внизу Safari, затем «На экран «Домой»». Значок появится на главном экране.');
+    } else if (/Android/i.test(ua)) {
+      show('Нажмите три точки справа вверху в Chrome, затем «Установить приложение» или «Добавить на главный экран».');
+    } else {
+      show('Откройте меню браузера и выберите «Установить приложение» или «Добавить на главный экран».');
     }
   });
+  if (closeBtn) closeBtn.addEventListener('click', function () { sheet.hidden = true; });
+  if (sheet) sheet.addEventListener('click', function (e) { if (e.target === sheet) sheet.hidden = true; });
 })();
 </script>
-
-<script>
-(function () {
-  // Motion: reveal blocks as they enter the screen. Without JS everything stays visible.
-  document.documentElement.classList.add('js');
-  var targets = document.querySelectorAll('.sec-head, .group-title, .services, .timeline li, .contact, .offer, .hero h1, .hero .eyebrow');
-  var side = 0;
-  Array.prototype.forEach.call(targets, function (el, i) {
-    el.classList.add('reveal');
-    if (el.matches('.contact, .offer, .timeline li')) {
-      el.classList.add(side % 2 ? 'from-right' : 'from-left');
-      side++;
-    }
-    if (el.matches('.timeline li')) el.style.setProperty('--d', (i % 3) * 0.12 + 's');
-  });
-  if (!('IntersectionObserver' in window)) {
-    Array.prototype.forEach.call(targets, function (el) { el.classList.add('in'); });
-    return;
-  }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-  Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
-})();
-</script>
-
-<script>
-(function () {
-  var el = document.getElementById('book-float');
-  if (!el) return;
-  function update() { el.classList.toggle('show', window.scrollY > 500); }
-  window.addEventListener('scroll', update, { passive: true });
-  update();
-})();
-</script>
-<script>
-(function () {
-  var tabs = document.querySelectorAll('.tab');
-  var titles = document.querySelectorAll('.group-title');
-  if (!tabs.length || !titles.length) return;
-  function show(f) {
-    Array.prototype.forEach.call(tabs, function (t) {
-      t.setAttribute('aria-pressed', t.getAttribute('data-f') === f ? 'true' : 'false');
-    });
-    Array.prototype.forEach.call(titles, function (h, i) {
-      var list = h.nextElementSibling;
-      var on = f === 'all' || f === String(i);
-      h.hidden = !on;
-      if (list) list.hidden = !on;
-    });
-  }
-  Array.prototype.forEach.call(tabs, function (t) {
-    t.addEventListener('click', function () {
-      var f = t.getAttribute('data-f');
-      if (t.getAttribute('aria-pressed') === 'true') f = 'all';
-      show(f);
-    });
-  });
-  show('all');
-})();
-</script>
-<script>
-(function () {
-  var bar = document.getElementById('progress');
-  if (!bar) return;
-  function update() {
-    var max = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = (max > 0 ? Math.min(100, window.scrollY / max * 100) : 0) + '%';
-  }
-  window.addEventListener('scroll', update, { passive: true });
-  update();
-})();
-</script>
+<script async src="https://w1474067.alteg.io/widgetJS" charset="UTF-8"></script>
 </body>
 </html>
