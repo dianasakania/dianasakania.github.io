@@ -1,5 +1,28 @@
-const CACHE='diana-sakania-shell-v2';
-self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./','./index.html','./manifest.webmanifest','./icon-180.png','./icon-192.png','./icon-512.png'])).catch(()=>{}));self.skipWaiting()});
-self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
-// Сеть в первую очередь: после обновления сайта сразу видна новая версия; кэш — только если нет сети
-self.addEventListener('fetch',e=>{const r=e.request;if(r.method!=='GET')return;const u=new URL(r.url);if(u.origin!==location.origin)return;e.respondWith(fetch(r).then(res=>{const copy=res.clone();caches.open(CACHE).then(c=>c.put(r,copy));return res}).catch(()=>caches.match(r).then(c=>c||caches.match('./'))))});
+const CACHE = 'diana-sakania-shell-v5';
+self.addEventListener('install', event => {
+  event.waitUntil(caches.open(CACHE).then(cache => cache.add('./')));
+  self.skipWaiting();
+});
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys => Promise.all(
+      keys.filter(key => key.startsWith('diana-sakania-shell-') && key !== CACHE)
+        .map(key => caches.delete(key))
+    )).then(() => self.clients.claim())
+  );
+});
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET') return;
+  const url = new URL(event.request.url);
+  if (url.origin !== self.location.origin) return;
+  event.respondWith(
+    caches.open(CACHE).then(cache =>
+      cache.match(event.request).then(cached => cached ||
+        fetch(event.request).then(response => {
+          if (response && response.ok) cache.put(event.request, response.clone());
+          return response;
+        }).catch(() => cache.match('./'))
+      )
+    )
+  );
+});
