@@ -1968,6 +1968,21 @@ html[data-theme="dark"] .tab-btn.active .tab-num { color: #8C6D3B; }
     toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
   }
 
+  /* WhatsApp: в Chrome на Android прямая ссылка-запуск (без цепочки переадресаций),
+     в Instagram и на iPhone остаётся обычная wa.me */
+  const WA_PHONE = '79409253108';
+  const isAndroidUA = /Android/i.test(navigator.userAgent || '');
+  const inAppUA = /Instagram|FBAN|FBAV/i.test(navigator.userAgent || '');
+  function waHref(text) {
+    const web = 'https://wa.me/' + WA_PHONE + (text ? '?text=' + encodeURIComponent(text) : '');
+    if (isAndroidUA && !inAppUA) {
+      return 'intent://send?phone=' + WA_PHONE + (text ? '&text=' + encodeURIComponent(text) : '') +
+        '#Intent;scheme=whatsapp;S.browser_fallback_url=' + encodeURIComponent(web) + ';end';
+    }
+    return web;
+  }
+  document.querySelectorAll('a[href^="https://wa.me/' + WA_PHONE + '"]').forEach(a => { a.href = waHref(''); });
+
   /* ========================================================================
      SERVICES CATALOG & BOOKING MODAL
      ======================================================================== */
@@ -2412,7 +2427,7 @@ document.addEventListener('keydown', e => {
     const cleanAmount = amountLabel.replace(/\u00A0/g, ' ').replace('₽', 'руб.');
     let waText = `Здравствуйте! Оплатил(а) подарочный сертификат на ${cleanAmount}, код ${certCode}.`;
     if (recipient) waText += ` Получатель: ${recipient}.`;
-    certWaBtn.href = 'https://wa.me/79409253108?text=' + encodeURIComponent(waText);
+    certWaBtn.href = waHref(waText);
   }
 
   function openCert() {
