@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0B0A09">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Генератор сертификата · DIANA SAKANIA</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%23141210'/%3E%3Crect x='6' y='6' width='116' height='116' rx='24' fill='none' stroke='%23D4B47C' stroke-width='3' stroke-opacity='0.55'/%3E%3Ctext x='64' y='78' text-anchor='middle' font-family='Georgia,serif' font-size='48' font-weight='600' fill='%23E5CAA0' letter-spacing='3'%3EDS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --bg: #0B0A09;
+  --surface: #161513;
+  --ink: #FAF8F5;
+  --ink-soft: rgba(250, 248, 245, 0.72);
+  --ink-muted: rgba(250, 248, 245, 0.48);
+  --gold: #D4B47C;
+  --gold-light: #EAD3AD;
+  --border: rgba(255, 255, 255, 0.10);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+button, input { font: inherit; color: inherit; }
+button { background: none; border: 0; padding: 0; cursor: pointer; }
+
+.shell {
+  width: min(520px, 100%);
+  margin: 0 auto;
+  padding: calc(16px + env(safe-area-inset-top)) 16px calc(32px + env(safe-area-inset-bottom));
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #1B1815;
+  border: 1px solid rgba(212, 180, 124, 0.45);
+  color: var(--gold-light);
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+}
+.brand h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+.brand p {
+  margin: 1px 0 0;
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+.badge-private {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(212, 180, 124, 0.14);
+  border: 1px solid rgba(212, 180, 124, 0.3);
+  color: var(--gold-light);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.preview-card {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(212, 180, 124, 0.28);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  background: #141210;
+  margin-bottom: 16px;
+}
+.preview-card canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.panel {
+  border-radius: 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field-label {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.amounts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+}
+.amt-btn {
+  height: 40px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s var(--ease), background 0.2s ease, color 0.2s ease;
+}
+.amt-btn:active { transform: scale(0.95); }
+.amt-btn.active {
+  background: linear-gradient(135deg, #EAD3AD 0%, #CFAF78 100%);
+  border-color: #EAD3AD;
+  color: #141210;
+  font-weight: 700;
+}
+
+.custom-wrap {
+  display: none;
+  margin-top: 8px;
+}
+.custom-wrap.show { display: block; }
+
+.input {
+  width: 100%;
+  height: 44px;
+  padding: 0 13px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  color: var(--ink);
+  font-size: 14.5px;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.input::placeholder { color: rgba(250, 248, 245, 0.34); }
+.input:focus {
+  border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.code-row {
+  display: flex;
+  gap: 8px;
+}
+.code-row .input {
+  flex: 1;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.gen-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(212, 180, 124, 0.14);
+  border: 1px solid rgba(212, 180, 124, 0.32);
+  color: var(--gold-light);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: transform 0.16s var(--ease);
+}
+.gen-btn:active { transform: scale(0.93); }
+.gen-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 4px;
+}
+.btn-primary {
+  width: 100%;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #EAD3AD 0%, #CFAF78 100%);
+  color: #141210;
+  font-size: 15px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 10px 24px rgba(207, 175, 120, 0.24);
+  transition: transform 0.16s var(--ease);
+}
+.btn-primary:active { transform: scale(0.975); }
+.btn-secondary {
+  width: 100%;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 180, 124, 0.42);
+  color: var(--gold-light);
+  font-size: 14.5px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.16s var(--ease);
+}
+.btn-secondary:active { transform: scale(0.975); }
+.actions svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  transform: translate(-50%, 24px);
+  opacity: 0;
+  pointer-events: none;
+  padding: 11px 18px;
+  border-radius: 999px;
+  background: #141210;
+  color: #FAF8F5;
+  border: 1px solid rgba(212, 180, 124, 0.45);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: opacity 0.22s var(--ease), transform 0.26s var(--ease);
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+</style>
+</head>
+<body>
+
+<main class="shell">
+  <header class="topbar">
+    <div class="brand">
+      <div class="avatar">DS</div>
+      <div>
+        <h1>Выпуск сертификата</h1>
+        <p>DIANA SAKANIA · Сухум</p>
+      </div>
+    </div>
+    <span class="badge-private">Для мастера</span>
+  </header>
+
+  <div class="preview-card">
+    <canvas id="certCanvas" width="1200" height="760"></canvas>
+  </div>
+
+  <section class="panel">
+    <div>
+      <span class="field-label">Номинал</span>
+      <div class="amounts" role="radiogroup" aria-label="Номинал">
+        <button class="amt-btn" type="button" data-amount="3000">3 000 ₽</button>
+        <button class="amt-btn active" type="button" data-amount="5000">5 000 ₽</button>
+        <button class="amt-btn" type="button" data-amount="10000">10 000 ₽</button>
+        <button class="amt-btn" type="button" data-amount="custom">Своя</button>
+      </div>
+      <div class="custom-wrap" id="customWrap">
+        <input class="input" id="customInput" type="number" inputmode="numeric" min="500" step="500" placeholder="Сумма в рублях (например, 7000)">
+      </div>
+    </div>
+
+    <div>
+      <label class="field-label" for="codeInput">Код сертификата (из сообщения клиента)</label>
+      <div class="code-row">
+        <input class="input" id="codeInput" type="text" maxlength="16" placeholder="DS-4829">
+        <button class="gen-btn" id="regenCode" type="button" aria-label="Новый случайный код">
+          <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <label class="field-label" for="recipientInput">Имя получателя (необязательно)</label>
+      <input class="input" id="recipientInput" type="text" maxlength="40" placeholder="Например: Анна">
+    </div>
+
+    <div>
+      <label class="field-label" for="validInput">Подпись / срок действия (необязательно)</label>
+      <input class="input" id="validInput" type="text" maxlength="50" value="Действителен 6 месяцев">
+    </div>
+
+    <div class="actions">
+      <button class="btn-primary" id="shareBtn" type="button">
+        <svg viewBox="0 0 24 24"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+        <span>Отправить клиенту (WhatsApp / Telegram)</span>
+      </button>
+      <button class="btn-secondary" id="downloadBtn" type="button">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Скачать картинку PNG</span>
+      </button>
+    </div>
+  </section>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite">Готово</div>
+
+<script>
+(() => {
+  'use strict';
+
+  const canvas = document.getElementById('certCanvas');
+  const ctx = canvas.getContext('2d');
+  const amtBtns = document.querySelectorAll('.amt-btn');
+  const customWrap = document.getElementById('customWrap');
+  const customInput = document.getElementById('customInput');
+  const codeInput = document.getElementById('codeInput');
+  const regenCode = document.getElementById('regenCode');
+  const recipientInput = document.getElementById('recipientInput');
+  const validInput = document.getElementById('validInput');
+  const shareBtn = document.getElementById('shareBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const toast = document.getElementById('toast');
+
+  let amount = 5000;
+  let toastTimer = null;
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  function randomCode() {
+    return 'DS-' + Math.floor(1000 + Math.random() * 9000);
+  }
+
+  function formatRub(n) {
+    return Number(n).toLocaleString('ru-RU') + ' ₽';
+  }
+
+  function roundRect(c, x, y, w, h, r) {
+    c.beginPath();
+    c.moveTo(x + r, y);
+    c.arcTo(x + w, y, x + w, y + h, r);
+    c.arcTo(x + w, y + h, x, y + h, r);
+    c.arcTo(x, y + h, x, y, r);
+    c.arcTo(x, y, x + w, y, r);
+    c.closePath();
+  }
+
+  function drawCertificate() {
+    const W = canvas.width;
+    const H = canvas.height;
+
+    // 1. Deep obsidian base gradient
+    const bgGrad = ctx.createLinearGradient(0, 0, W, H);
+    bgGrad.addColorStop(0, '#1B1815');
+    bgGrad.addColorStop(0.55, '#12100E');
+    bgGrad.addColorStop(1, '#0C0B0A');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, W, H);
+
+    // 2. Soft champagne-gold radial glows
+    const g1 = ctx.createRadialGradient(W * 0.84, H * 0.14, 10, W * 0.84, H * 0.14, 460);
+    g1.addColorStop(0, 'rgba(212, 180, 124, 0.24)');
+    g1.addColorStop(1, 'rgba(212, 180, 124, 0)');
+    ctx.fillStyle = g1;
+    ctx.fillRect(0, 0, W, H);
+
+    const g2 = ctx.createRadialGradient(W * 0.14, H * 0.88, 10, W * 0.14, H * 0.88, 420);
+    g2.addColorStop(0, 'rgba(176, 141, 87, 0.18)');
+    g2.addColorStop(1, 'rgba(176, 141, 87, 0)');
+    ctx.fillStyle = g2;
+    ctx.fillRect(0, 0, W, H);
+
+    // 3. Double luxury gold frame
+    roundRect(ctx, 28, 28, W - 56, H - 56, 30);
+    ctx.strokeStyle = 'rgba(212, 180, 124, 0.42)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    roundRect(ctx, 42, 42, W - 84, H - 84, 22);
+    ctx.strokeStyle = 'rgba(212, 180, 124, 0.18)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // 4. Top DS monogram circle
+    const cx = W / 2;
+    ctx.beginPath();
+    ctx.arc(cx, 122, 44, 0, Math.PI * 2);
+    ctx.fillStyle = '#181512';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(212, 180, 124, 0.65)';
+    ctx.lineWidth = 2.2;
+    ctx.stroke();
+
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#E5CAA0';
+    ctx.font = '600 36px "Cormorant Garamond", Georgia, serif';
+    ctx.fillText('DS', cx, 124);
+
+    // 5. Title
+    ctx.fillStyle = '#E5CAA0';
+    ctx.font = '600 58px "Cormorant Garamond", Georgia, serif';
+    ctx.fillText('ПОДАРОЧНЫЙ СЕРТИФИКАТ', cx, 232);
+
+    // 6. Brand subtitle with gold hairlines
+    ctx.fillStyle = '#FAF8F5';
+    ctx.font = 'italic 500 44px "Cormorant Garamond", Georgia, serif';
+    const brandText = 'Диана Сакания';
+    ctx.fillText(brandText, cx, 298);
+    const bw = ctx.measureText(brandText).width;
+    ctx.strokeStyle = 'rgba(212, 180, 124, 0.55)';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(cx - bw / 2 - 78, 300);
+    ctx.lineTo(cx - bw / 2 - 22, 300);
+    ctx.moveTo(cx + bw / 2 + 22, 300);
+    ctx.lineTo(cx + bw / 2 + 78, 300);
+    ctx.stroke();
+
+    // 7. Recipient (optional)
+    const rawRec = recipientInput.value.trim();
+    const hasRec = rawRec.length > 0;
+    if (hasRec) {
+      const recLine = /^для[\s:]/i.test(rawRec) ? rawRec : `Для: ${rawRec}`;
+      ctx.fillStyle = '#EAD3AD';
+      ctx.font = '500 28px "Inter", sans-serif';
+      ctx.fillText(recLine, cx, 366);
+    }
+
+    // 8. Two info pills: Amount + Code
+    const pillY = hasRec ? 426 : 392;
+    const pillH = 72;
+    const amtText = amount > 0 ? formatRub(amount) : 'На услугу';
+    const codeText = (codeInput.value.trim() || 'DS-0000').toUpperCase();
+
+    ctx.font = '600 26px "Inter", sans-serif';
+    const p1Label = 'Номинал: ';
+    const p2Label = 'Код: ';
+    const p1W = Math.max(290, ctx.measureText(p1Label + amtText).width + 64);
+    const p2W = Math.max(240, ctx.measureText(p2Label + codeText).width + 64);
+    const gap = 22;
+    const totalW = p1W + gap + p2W;
+    const startX = cx - totalW / 2;
+
+    // Pill 1 (Amount)
+    roundRect(ctx, startX, pillY, p1W, pillH, 16);
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.07)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(212, 180, 124, 0.35)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Pill 2 (Code)
+    roundRect(ctx, startX + p1W + gap, pillY, p2W, pillH, 16);
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.07)';
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(212, 180, 124, 0.35)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Draw mixed-color text inside Pill 1
+    ctx.textAlign = 'left';
+    const w1a = ctx.measureText(p1Label).width;
+    ctx.font = '700 27px "Inter", sans-serif';
+    const w1b = ctx.measureText(amtText).width;
+    const p1x = startX + (p1W - (w1a + w1b)) / 2;
+    ctx.font = '500 26px "Inter", sans-serif';
+    ctx.fillStyle = 'rgba(250, 248, 245, 0.72)';
+    ctx.fillText(p1Label, p1x, pillY + pillH / 2 + 1);
+    ctx.font = '700 27px "Inter", sans-serif';
+    ctx.fillStyle = '#EAD3AD';
+    ctx.fillText(amtText, p1x + w1a, pillY + pillH / 2 + 1);
+
+    // Draw mixed-color text inside Pill 2
+    ctx.font = '500 26px "Inter", sans-serif';
+    const w2a = ctx.measureText(p2Label).width;
+    ctx.font = '700 27px "Inter", sans-serif';
+    const w2b = ctx.measureText(codeText).width;
+    const p2x = startX + p1W + gap + (p2W - (w2a + w2b)) / 2;
+    ctx.font = '500 26px "Inter", sans-serif';
+    ctx.fillStyle = 'rgba(250, 248, 245, 0.72)';
+    ctx.fillText(p2Label, p2x, pillY + pillH / 2 + 1);
+    ctx.font = '700 27px "Inter", sans-serif';
+    ctx.fillStyle = '#EAD3AD';
+    ctx.fillText(codeText, p2x + w2a, pillY + pillH / 2 + 1);
+
+    // 9. Footer details
+    ctx.textAlign = 'center';
+    const validText = validInput.value.trim();
+    if (validText) {
+      ctx.fillStyle = 'rgba(234, 211, 173, 0.78)';
+      ctx.font = '500 21px "Inter", sans-serif';
+      ctx.fillText(validText, cx, 566);
+    }
+
+    ctx.fillStyle = 'rgba(250, 248, 245, 0.78)';
+    ctx.font = '500 22px "Inter", sans-serif';
+    ctx.fillText('Макияж  ·  Перманент  ·  Брови', cx, 622);
+
+    ctx.fillStyle = 'rgba(250, 248, 245, 0.46)';
+    ctx.font = '500 19px "Inter", sans-serif';
+    ctx.fillText('г. Сухум, ул. Ардзинба, 50  ·  dianasakania.com', cx, 662);
+  }
+
+  function getFilename() {
+    const cleanCode = (codeInput.value.trim() || 'DS').replace(/[^a-zA-Z0-9_-]/g, '');
+    return `certificate-${cleanCode}.png`;
+  }
+
+  function downloadPNG() {
+    drawCertificate();
+    const link = document.createElement('a');
+    link.download = getFilename();
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    showToast('Картинка сохранена');
+  }
+
+  async function sharePNG() {
+    drawCertificate();
+    const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
+    if (!blob) {
+      downloadPNG();
+      return;
+    }
+    const file = new File([blob], getFilename(), { type: 'image/png' });
+    const codeText = (codeInput.value.trim() || 'DS').toUpperCase();
+    const shareData = {
+      title: 'Подарочный сертификат DIANA SAKANIA',
+      text: `Ваш подарочный сертификат DIANA SAKANIA (код ${codeText}). Буду рада видеть вас в студии!`,
+      files: [file]
+    };
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try {
+        await navigator.share(shareData);
+        return;
+      } catch (err) {
+        if (err && err.name === 'AbortError') return;
+      }
+    }
+    downloadPNG();
+  }
+
+  amtBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      amtBtns.forEach(b => b.classList.toggle('active', b === btn));
+      if (btn.dataset.amount === 'custom') {
+        customWrap.classList.add('show');
+        const v = parseInt(customInput.value, 10);
+        amount = v > 0 ? v : 0;
+        setTimeout(() => customInput.focus(), 40);
+      } else {
+        customWrap.classList.remove('show');
+        amount = parseInt(btn.dataset.amount, 10);
+      }
+      drawCertificate();
+    });
+  });
+
+  customInput.addEventListener('input', () => {
+    const v = parseInt(customInput.value, 10);
+    amount = v > 0 ? v : 0;
+    drawCertificate();
+  });
+
+  codeInput.value = randomCode();
+  codeInput.addEventListener('input', drawCertificate);
+  regenCode.addEventListener('click', () => {
+    codeInput.value = randomCode();
+    drawCertificate();
+  });
+  recipientInput.addEventListener('input', drawCertificate);
+  validInput.addEventListener('input', drawCertificate);
+
+  shareBtn.addEventListener('click', sharePNG);
+  downloadBtn.addEventListener('click', downloadPNG);
+
+  drawCertificate();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(drawCertificate);
+  }
+})();
+</script>
+</body>
+</html>
