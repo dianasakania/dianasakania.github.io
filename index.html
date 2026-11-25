@@ -1086,6 +1086,137 @@ html[data-theme="dark"] .tab-btn.active .tab-num { color: #8C6D3B; }
   flex-direction: column;
   gap: 9px;
 }
+
+.cert-bank-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.cert-bank-btn {
+  height: 50px;
+  border-radius: 14px;
+  font-size: 14.5px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  transition: transform 0.16s var(--ease), opacity 0.2s ease, box-shadow 0.2s ease;
+}
+.cert-bank-btn:active { transform: scale(0.97); }
+.cert-bank-tbank {
+  background: linear-gradient(135deg, #FFDD2D 0%, #F5C400 100%);
+  color: #141210;
+  box-shadow: 0 8px 20px rgba(255, 221, 45, 0.20);
+}
+.cert-bank-sber {
+  background: linear-gradient(135deg, #21A038 0%, #198754 100%);
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(33, 160, 56, 0.22);
+}
+.cert-bank-vtb {
+  background: linear-gradient(135deg, #0A2896 0%, #0050E0 100%);
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(10, 40, 150, 0.28);
+}
+.cert-bank-alfa {
+  background: linear-gradient(135deg, #EF3124 0%, #C81D13 100%);
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(239, 49, 36, 0.24);
+}
+.cert-bank-btn.active {
+  box-shadow: 0 0 0 2px #141210, 0 0 0 3.5px #EAD3AD;
+}
+.cert-bank-open {
+  display: none;
+  margin-top: 9px;
+  width: 100%;
+  height: 42px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #EAD3AD 0%, #CFAF78 100%);
+  color: #141210;
+  font-size: 13px;
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: transform 0.15s var(--ease);
+}
+.cert-bank-open:active { transform: scale(0.97); }
+.cert-bank-open.show { display: inline-flex; }
+.cert-bank-panel {
+  display: none;
+  padding: 13px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(212, 180, 124, 0.34);
+  margin-bottom: 2px;
+}
+.cert-bank-panel.show {
+  display: block;
+  animation: fadeSlide 0.22s var(--ease);
+}
+.cert-bank-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.cert-bank-panel-title {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #EAD3AD;
+}
+.cert-bank-steps {
+  margin: 0 0 10px;
+  padding-left: 17px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(250, 248, 245, 0.84);
+}
+.cert-bank-steps li + li { margin-top: 3px; }
+.cert-bank-steps strong { color: #FAF8F5; }
+.cert-bank-quick {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.cert-quick-btn {
+  height: 38px;
+  padding: 0 10px;
+  border-radius: 10px;
+  background: rgba(212, 180, 124, 0.14);
+  border: 1px solid rgba(212, 180, 124, 0.32);
+  color: #EAD3AD;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  white-space: nowrap;
+  transition: transform 0.15s var(--ease), background 0.2s ease;
+}
+.cert-quick-btn:active { transform: scale(0.96); background: rgba(212, 180, 124, 0.24); }
+.cert-sber-open {
+  display: none;
+  margin-top: 8px;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(33, 160, 56, 0.18);
+  border: 1px solid rgba(33, 160, 56, 0.48);
+  color: #86EFAC;
+  font-size: 12.5px;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.cert-sber-open.show { display: inline-flex; }
+
 .cert-pay-btn {
   width: 100%;
   height: 50px;
@@ -1789,11 +1920,26 @@ html[data-theme="dark"] .tab-btn.active .tab-num { color: #8C6D3B; }
     </button>
 
     <div class="cert-actions">
-      <a class="cert-pay-btn" id="certPayBtn" href="https://t.tb.ru/c2c-qr-choose-bank?requisiteNumber=+79409253108&bankCode=100000000004" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-        <span id="certPayBtnText">Оплатить 5 000 ₽</span>
-      </a>
-      <a class="cert-wa-btn" id="certWaBtn" href="https://wa.me/79409253108" target="_blank" rel="noopener">
+      <div class="cert-bank-grid">
+        <button class="cert-bank-btn cert-bank-tbank" type="button" data-bank="tbank">Т-Банк</button>
+        <button class="cert-bank-btn cert-bank-sber" type="button" data-bank="sber">Сбербанк</button>
+        <button class="cert-bank-btn cert-bank-vtb" type="button" data-bank="vtb">ВТБ</button>
+        <button class="cert-bank-btn cert-bank-alfa" type="button" data-bank="alfa">Альфа-Банк</button>
+      </div>
+
+      <div class="cert-bank-panel" id="certBankPanel">
+        <div class="cert-bank-panel-head">
+          <p class="cert-bank-panel-title" id="certBankPanelTitle">Оплата через Т-Банк · 5 000 ₽</p>
+        </div>
+        <ol class="cert-bank-steps" id="certBankSteps"></ol>
+        <div class="cert-bank-quick">
+          <button class="cert-quick-btn" id="bankCopyPhone" type="button">Скопировать номер</button>
+          <button class="cert-quick-btn" id="bankCopyCode" type="button">Скопировать код</button>
+        </div>
+        <a class="cert-bank-open" id="bankOpenAppBtn" href="#">Открыть приложение ↗</a>
+      </div>
+
+      <a class="cert-wa-btn" id="certWaBtn" href="https://api.whatsapp.com/send?phone=79409253108">
         <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.5 7.3L3 20.5l1.7-5.1A8.4 8.4 0 1 1 21 11.5z"/></svg>
         <span>Подтвердить в WhatsApp →</span>
       </a>
@@ -2174,19 +2320,85 @@ document.addEventListener('keydown', e => {
   const certPreviewCode = document.getElementById('certPreviewCode');
   const certHintCode = document.getElementById('certHintCode');
   const certHintCopy = document.getElementById('certHintCopy');
-  const certPayBtn = document.getElementById('certPayBtn');
-  const certPayBtnText = document.getElementById('certPayBtnText');
+  const certBankBtns = document.querySelectorAll('.cert-bank-btn[data-bank]');
+  const certBankPanel = document.getElementById('certBankPanel');
+  const certBankPanelTitle = document.getElementById('certBankPanelTitle');
+  const certBankSteps = document.getElementById('certBankSteps');
+  const bankCopyPhone = document.getElementById('bankCopyPhone');
+  const bankCopyCode = document.getElementById('bankCopyCode');
+  const bankOpenAppBtn = document.getElementById('bankOpenAppBtn');
   const certWaBtn = document.getElementById('certWaBtn');
   const copyPayPhone = document.getElementById('copyPayPhone');
 
   let certAmount = 5000;
   let certCode = 'DS-' + Math.floor(1000 + Math.random() * 9000);
+  let activeBankKey = null;
+
+  const BANKS = {
+    tbank: {
+      name: 'Т-Банк',
+      appName: 'Т-Банк',
+      isTbank: true,
+      androidIntent: 'intent://Main/#Intent;scheme=tinkoffbank;package=com.idamob.tinkoff.android;S.browser_fallback_url=https%3A%2F%2Fwww.tbank.ru%2Fmybank%2F;end'
+    },
+    sber: {
+      name: 'Сбербанк',
+      appName: 'СберБанк Онлайн',
+      isTbank: false,
+      androidIntent: 'intent://#Intent;scheme=sberbankonline;package=ru.sberbankmobile;S.browser_fallback_url=https%3A%2F%2Fwww.rustore.ru%2Fcatalog%2Fapp%2Fru.sberbankmobile;end'
+    },
+    vtb: {
+      name: 'ВТБ',
+      appName: 'ВТБ Онлайн',
+      isTbank: false,
+      androidIntent: 'intent://#Intent;scheme=vtb;package=ru.vtb24.mobilebanking.android;S.browser_fallback_url=https%3A%2F%2Fwww.rustore.ru%2Fcatalog%2Fapp%2Fru.vtb24.mobilebanking.android;end'
+    },
+    alfa: {
+      name: 'Альфа-Банк',
+      appName: 'Альфа-Банк',
+      isTbank: false,
+      androidIntent: 'intent://#Intent;scheme=alfabank;package=ru.alfabank.mobile.android;S.browser_fallback_url=https%3A%2F%2Fwww.rustore.ru%2Fcatalog%2Fapp%2Fru.alfabank.mobile.android;end'
+    }
+  };
 
   function formatRub(num) {
     return Number(num).toLocaleString('ru-RU') + ' ₽';
   }
 
-  const TBANK_QR_BASE = 'https://t.tb.ru/c2c-qr-choose-bank?requisiteNumber=+79409253108&bankCode=100000000004';
+  const isAndroid = /Android/i.test(navigator.userAgent || '');
+
+  function renderBankPanel() {
+    if (!activeBankKey || !BANKS[activeBankKey] || !certBankPanel) return;
+    const bank = BANKS[activeBankKey];
+    const amountLabel = certAmount && certAmount > 0 ? formatRub(certAmount) : 'нужную сумму';
+    certBankPanelTitle.textContent = `Оплата через ${bank.name} · ${certAmount && certAmount > 0 ? formatRub(certAmount) : 'Любая сумма'}`;
+
+    if (bank.isTbank) {
+      certBankSteps.innerHTML = `
+        <li>Откройте <strong>${bank.appName}</strong> → <strong>Платежи</strong> → <strong>По номеру телефона</strong>.</li>
+        <li>Вставьте номер <strong>+7 940 925-31-08</strong> (уже скопирован) — получатель <strong>Диана С.</strong> (Т-Банк).</li>
+        <li>Введите сумму <strong>${amountLabel}</strong> и укажите код <strong>${certCode}</strong> в комментарии к переводу.</li>
+        <li>После оплаты нажмите <strong>«Подтвердить в WhatsApp»</strong> ниже — Диана пришлёт готовый сертификат.</li>
+      `;
+    } else {
+      certBankSteps.innerHTML = `
+        <li>Откройте <strong>${bank.appName}</strong> → <strong>Перевести по номеру (СБП)</strong>.</li>
+        <li>Вставьте номер <strong>+7 940 925-31-08</strong> (уже скопирован).</li>
+        <li>Выберите банк получателя: <strong>Т-Банк</strong> (Диана С.), введите сумму <strong>${amountLabel}</strong> и укажите код <strong>${certCode}</strong> в комментарии.</li>
+        <li>После оплаты нажмите <strong>«Подтвердить в WhatsApp»</strong> ниже — Диана пришлёт готовый сертификат.</li>
+      `;
+    }
+
+    if (bankOpenAppBtn) {
+      if (isAndroid) {
+        bankOpenAppBtn.href = bank.androidIntent;
+        bankOpenAppBtn.textContent = `Открыть приложение ${bank.name} ↗`;
+        bankOpenAppBtn.classList.add('show');
+      } else {
+        bankOpenAppBtn.classList.remove('show');
+      }
+    }
+  }
 
   function updateCertUI() {
     const recipient = certRecipientInput.value.trim();
@@ -2195,17 +2407,20 @@ document.addEventListener('keydown', e => {
     certPreviewAmount.textContent = amountLabel;
     certPreviewCode.textContent = certCode;
     if (certHintCode) certHintCode.textContent = certCode;
-    certPayBtnText.textContent = certAmount && certAmount > 0 ? `Оплатить ${formatRub(certAmount)}` : 'Перейти к оплате';
-    certPayBtn.href = TBANK_QR_BASE;
+    if (activeBankKey) renderBankPanel();
 
-    let waText = `Здравствуйте! Оплатил(а) подарочный сертификат на ${amountLabel}, код ${certCode}.`;
+    const cleanAmount = amountLabel.replace(/\u00A0/g, ' ').replace('₽', 'руб.');
+    let waText = `Здравствуйте! Оплатил(а) подарочный сертификат на ${cleanAmount}, код ${certCode}.`;
     if (recipient) waText += ` Получатель: ${recipient}.`;
-    certWaBtn.href = 'https://wa.me/79409253108?text=' + encodeURIComponent(waText);
+    certWaBtn.href = 'https://api.whatsapp.com/send?phone=79409253108&text=' + encodeURIComponent(waText);
   }
 
   function openCert() {
     haptic(12);
     certCode = 'DS-' + Math.floor(1000 + Math.random() * 9000);
+    activeBankKey = null;
+    certBankBtns.forEach(b => b.classList.remove('active'));
+    if (certBankPanel) certBankPanel.classList.remove('show');
     updateCertUI();
     certSheet.style.transform = '';
     certModal.classList.add('show');
@@ -2265,10 +2480,53 @@ document.addEventListener('keydown', e => {
     showToast(`Код ${certCode} скопирован — вставьте в комментарий`);
   }
 
-  certPayBtn.addEventListener('click', () => {
-    haptic(14);
-    copyCertComment();
+  async function copyPhoneNumber() {
+    const phone = '+79409253108';
+    try {
+      await navigator.clipboard.writeText(phone);
+    } catch (_) {
+      const ta = document.createElement('textarea');
+      ta.value = phone;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+    showToast('Номер +7 940 925-31-08 скопирован');
+  }
+
+  certBankBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      haptic(12);
+      const key = btn.dataset.bank;
+      if (activeBankKey === key && certBankPanel.classList.contains('show')) {
+        certBankPanel.classList.remove('show');
+        btn.classList.remove('active');
+        activeBankKey = null;
+        return;
+      }
+      activeBankKey = key;
+      certBankBtns.forEach(b => b.classList.toggle('active', b === btn));
+      renderBankPanel();
+      certBankPanel.classList.add('show');
+      copyPhoneNumber();
+    });
   });
+
+  if (bankCopyPhone) {
+    bankCopyPhone.addEventListener('click', () => {
+      haptic(10);
+      copyPhoneNumber();
+    });
+  }
+  if (bankCopyCode) {
+    bankCopyCode.addEventListener('click', () => {
+      haptic(10);
+      copyCertComment();
+    });
+  }
   if (certHintCopy) {
     certHintCopy.addEventListener('click', () => {
       haptic(10);

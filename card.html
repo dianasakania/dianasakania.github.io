@@ -7,7 +7,11 @@
 <meta name="theme-color" content="#0B0A09">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Генератор сертификата · DIANA SAKANIA</title>
+<meta name="apple-mobile-web-app-title" content="Сертификаты DS">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" sizes="512x512" href="card-icon.png">
+<link rel="manifest" href="card-manifest.json">
+<title>Сертификаты DS · DIANA SAKANIA</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%23141210'/%3E%3Crect x='6' y='6' width='116' height='116' rx='24' fill='none' stroke='%23D4B47C' stroke-width='3' stroke-opacity='0.55'/%3E%3Ctext x='64' y='78' text-anchor='middle' font-family='Georgia,serif' font-size='48' font-weight='600' fill='%23E5CAA0' letter-spacing='3'%3EDS%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -283,6 +287,120 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
   transition: opacity 0.22s var(--ease), transform 0.26s var(--ease);
 }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+.install-bar {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+}
+.install-pill {
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(212, 180, 124, 0.32);
+  color: var(--gold-light);
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.16s var(--ease), background 0.2s ease;
+}
+.install-pill:active { transform: scale(0.96); background: rgba(212, 180, 124, 0.14); }
+.install-pill svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.24s var(--ease), visibility 0.24s ease;
+}
+.modal.show { opacity: 1; visibility: visible; pointer-events: auto; }
+.sheet {
+  width: min(520px, 100%);
+  background: #161513;
+  color: #FAF8F5;
+  border-top: 1px solid rgba(212, 180, 124, 0.3);
+  border-radius: 26px 26px 0 0;
+  padding: 14px 16px calc(20px + env(safe-area-inset-bottom));
+  transform: translateY(100%);
+  transition: transform 0.32s var(--ease);
+}
+.modal.show .sheet { transform: translateY(0); }
+.sheet-handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.24);
+  margin: 0 auto 14px;
+}
+.sheet-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.sheet-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+.sheet-sub {
+  margin: 3px 0 0;
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+.close-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #FAF8F5;
+  font-size: 19px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.os-card {
+  padding: 13px 15px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  margin-bottom: 10px;
+}
+.os-card h3 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+.os-card ol {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.os-card li + li { margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -296,7 +414,7 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
         <p>DIANA SAKANIA · Сухум</p>
       </div>
     </div>
-    <span class="badge-private">Для мастера</span>
+    <a class="badge-private" href="https://dianasakania.com/card.html" target="_blank" rel="noopener">Открыть онлайн ↗</a>
   </header>
 
   <div class="preview-card">
@@ -348,13 +466,88 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
       </button>
     </div>
   </section>
+  <div class="install-bar">
+    <button class="install-pill" id="installAppBtn" type="button">
+      <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01M12 8v5m-2.5-2.5L12 8l2.5 2.5"/></svg>
+      <span>Добавить иконку на главный экран</span>
+    </button>
+  </div>
 </main>
 
 <div class="toast" id="toast" role="status" aria-live="polite">Готово</div>
 
+<div class="modal" id="installModal" role="dialog" aria-modal="true" aria-labelledby="instTitle">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-head">
+      <div>
+        <h2 class="sheet-title" id="instTitle">Иконка «Сертификаты DS»</h2>
+        <p class="sheet-sub">Откроется как отдельное приложение</p>
+      </div>
+      <button class="close-btn" id="closeInstallBtn" type="button" aria-label="Закрыть">×</button>
+    </div>
+    <div class="os-card">
+      <h3>Android (Chrome)</h3>
+      <ol>
+        <li>Нажмите <strong>три точки (⋮)</strong> в правом верхнем углу экрана.</li>
+        <li>Выберите <strong>«Добавить на главный экран»</strong> → <strong>«Установить»</strong>.</li>
+      </ol>
+    </div>
+    <div class="os-card" style="margin-bottom:0">
+      <h3>iPhone (Safari)</h3>
+      <ol>
+        <li>Нажмите кнопку <strong>«Поделиться»</strong> (квадрат со стрелкой вверх) внизу.</li>
+        <li>Выберите <strong>«На экран „Домой“»</strong> → <strong>«Добавить»</strong>.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
 <script>
 (() => {
   'use strict';
+
+  /* Generate dedicated app icon & manifest for /card.html */
+  try {
+    const ic = document.createElement('canvas');
+    ic.width = 180;
+    ic.height = 180;
+    const ictx = ic.getContext('2d');
+    if (ictx) {
+      ictx.fillStyle = '#141210';
+      ictx.fillRect(0, 0, 180, 180);
+      ictx.strokeStyle = 'rgba(212, 180, 124, 0.7)';
+      ictx.lineWidth = 4;
+      ictx.strokeRect(14, 14, 152, 152);
+      ictx.fillStyle = '#EAD3AD';
+      ictx.font = '600 60px Georgia, serif';
+      ictx.textAlign = 'center';
+      ictx.textBaseline = 'middle';
+      ictx.fillText('DS', 90, 82);
+      ictx.fillStyle = '#D4B47C';
+      ictx.font = '600 18px sans-serif';
+      ictx.fillText('CARD', 90, 134);
+      const iconUrl = ic.toDataURL('image/png');
+      const appleLink = document.getElementById('appleTouchIcon');
+      if (appleLink) appleLink.href = iconUrl;
+
+      const manifestObj = {
+        name: 'Сертификаты DS · Диана Сакания',
+        short_name: 'Сертификаты DS',
+        start_url: 'https://dianasakania.com/card.html',
+        scope: 'https://dianasakania.com/',
+        display: 'standalone',
+        orientation: 'portrait',
+        background_color: '#0B0A09',
+        theme_color: '#0B0A09',
+        icons: [{ src: iconUrl, sizes: '180x180', type: 'image/png' }]
+      };
+      const mLink = document.getElementById('inlineManifest');
+      if (mLink) {
+        mLink.href = 'data:application/manifest+json;charset=utf-8,' + encodeURIComponent(JSON.stringify(manifestObj));
+      }
+    }
+  } catch (_) {}
 
   const canvas = document.getElementById('certCanvas');
   const ctx = canvas.getContext('2d');
@@ -560,7 +753,39 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
   }
 
   function downloadPNG() {
-    drawCertificate();
+    
+  /* One-tap Add to Home Screen (native prompt on Android + fallback guide) */
+  let deferredPrompt = null;
+  const installAppBtn = document.getElementById('installAppBtn');
+  const installModal = document.getElementById('installModal');
+  const closeInstallBtn = document.getElementById('closeInstallBtn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+
+  if (installAppBtn) {
+    installAppBtn.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        return;
+      }
+      installModal.classList.add('show');
+    });
+  }
+  if (closeInstallBtn) {
+    closeInstallBtn.addEventListener('click', () => installModal.classList.remove('show'));
+  }
+  if (installModal) {
+    installModal.addEventListener('click', (e) => {
+      if (e.target === installModal) installModal.classList.remove('show');
+    });
+  }
+
+  drawCertificate();
     const link = document.createElement('a');
     link.download = getFilename();
     link.href = canvas.toDataURL('image/png');
@@ -636,3 +861,4 @@ button { background: none; border: 0; padding: 0; cursor: pointer; }
 </script>
 </body>
 </html>
+<!-- ds-card-generator -->
